@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Noise texture for animated grain effect */
+.bg-noise {
+  background-image: 
+    radial-gradient(circle at 25% 25%, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%),
+    radial-gradient(circle at 75% 75%, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%),
+    radial-gradient(circle at 15% 85%, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
+  background-size: 50px 50px, 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 40px, 20px 80px;
+}
+
+/* Ensure full height for the app */
+html, body, #__next {
+  height: 100%;
+}
+
+/* Pulsing glow animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 10px rgba(192, 132, 252, 0.2));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.6)) drop-shadow(0 0 15px rgba(192, 132, 252, 0.4));
+    transform: scale(1.01);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
