@@ -7,7 +7,12 @@
       "Bash(mv:*)",
       "Bash(rm:*)",
       "Bash(npm install:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(git add:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx update-browserslist-db:*)",
+      "Bash(npm start)",
+      "Bash(timeout /t 5)"
     ],
     "deny": []
   }

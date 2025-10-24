@@ -607,12 +607,19 @@ export default function Home() {
               
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">1. Information We Collect</h3>
-                <p className="text-purple-100">ZaynStudio may collect the following types of information through our apps:</p>
+                <p className="text-purple-100">ZaynStudio may collect the following information when you use our apps:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Usage data and analytics to improve app performance</li>
-                  <li>Device information (OS version, device type) for compatibility</li>
-                  <li>Crash reports to fix bugs and improve stability</li>
-                  <li>User preferences and settings to enhance your experience</li>
+                  <li>Usage data and analytics (e.g., features accessed, session length)</li>
+                  <li>Device information (OS version, device type, language settings)</li>
+                  <li>Crash reports to identify and fix bugs</li>
+                  <li>User preferences and settings (e.g., theme, language)</li>
+                  <li>Account information if you sign up (email, login method)</li>
+                </ul>
+                <p className="text-purple-100 mt-2">Third-party services we use may also collect data:</p>
+                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
+                  <li>Firebase (authentication, crash reporting, analytics)</li>
+                  <li>Google AdMob (ads personalization, device identifiers)</li>
+                  <li>Google Play Billing / Apple In-App Purchases (subscription management)</li>
                 </ul>
               </div>
 
@@ -620,50 +627,62 @@ export default function Home() {
                 <h3 className="text-lg font-semibold mb-2 text-white">2. How We Use Information</h3>
                 <p className="text-purple-100">We use collected information to:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Provide and maintain our app services</li>
-                  <li>Improve app functionality and user experience</li>
-                  <li>Analyze usage patterns to guide development</li>
-                  <li>Provide customer support and respond to inquiries</li>
+                  <li>Provide and improve app functionality</li>
+                  <li>Personalize the user experience</li>
+                  <li>Monitor performance and fix bugs</li>
+                  <li>Deliver ads (for free users)</li>
+                  <li>Process subscriptions and payments</li>
                   <li>Ensure app security and prevent misuse</li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">3. Information Sharing</h3>
-                <p className="text-purple-100">We may share information with:</p>
+                <p className="text-purple-100">We may share data with trusted third parties only to operate our services:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>App store platforms (Apple App Store, Google Play Store)</li>
-                  <li>Analytics providers (anonymized data only)</li>
-                  <li>Service providers who assist in app operations</li>
+                  <li>App store platforms (Google Play, Apple App Store)</li>
+                  <li>Analytics providers (aggregated, anonymized data)</li>
+                  <li>Service providers who help operate our apps</li>
                 </ul>
-                <p className="text-purple-100 mt-2">We never sell personal information to third parties.</p>
+                <p className="text-purple-100 mt-2">We do not sell personal data to third parties.</p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">4. Data Security</h3>
-                <p className="text-purple-100">We implement appropriate security measures to protect your information against unauthorized access, alteration, disclosure, or destruction.</p>
+                <p className="text-purple-100">We use technical and organizational measures to protect your data against unauthorized access, disclosure, or alteration. However, no method of transmission is 100% secure.</p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">5. Your Rights</h3>
-                <p className="text-purple-100">You have the right to:</p>
+                <p className="text-purple-100">You may:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Access your personal information</li>
+                  <li>Access the data associated with your account</li>
                   <li>Request correction of inaccurate data</li>
-                  <li>Request deletion of your data</li>
-                  <li>Opt-out of data collection where possible</li>
+                  <li>Request deletion of your account and data at any time</li>
+                  <li>Opt-out of personalized ads where supported by your device settings</li>
                 </ul>
+                <p className="text-purple-100 mt-2">To delete your account, please contact us at sandy@zaynstudio.app or use the in-app account deletion option (if available).</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">6. Contact Us</h3>
-                <p className="text-purple-100">For privacy concerns or questions, contact us at:</p>
-                <p className="text-white font-semibold">sandy@zaynstudio.app</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">6. Children's Privacy</h3>
+                <p className="text-purple-100">Our apps are not directed to children under 13. We do not knowingly collect personal data from children. If you believe we have collected such data, contact us to request deletion.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">7. Policy Updates</h3>
-                <p className="text-purple-100">We may update this Privacy Policy periodically. Changes will be posted in our apps and on our website. Continued use constitutes acceptance of updates.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">7. Health Disclaimer</h3>
+                <p className="text-purple-100">ByeSmoke AI provides motivational support only. It is not a substitute for medical advice or treatment. Please consult a healthcare professional for medical guidance.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">8. Contact Us</h3>
+                <p className="text-purple-100">For privacy concerns or questions, please contact:</p>
+                <p className="text-white font-semibold">📧 sandy@zaynstudio.app</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">9. Policy Updates</h3>
+                <p className="text-purple-100">We may update this Privacy Policy periodically. Updates will be posted in the app and on our website. Continued use of the app constitutes acceptance of the updated policy.</p>
               </div>
             </div>
           </div>
@@ -715,73 +734,97 @@ export default function Home() {
               
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">1. Acceptance of Terms</h3>
-                <p className="text-purple-100">By downloading, installing, or using any ZaynStudio app, you agree to these Terms of Service. If you do not agree, please do not use our apps.</p>
+                <p className="text-purple-100">By downloading, installing, or using any ZaynStudio app ("App"), you agree to these Terms of Service. If you do not agree, please discontinue use of the App.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">2. App Usage</h3>
-                <p className="text-purple-100">You may use our apps for personal or commercial purposes in accordance with:</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">2. Eligibility & Age Restriction</h3>
+                <p className="text-purple-100">The App is intended for individuals aged 13 and older. Users under 18 should obtain parental consent. The App is not directed to children under 13, and we do not knowingly collect data from them.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">3. App Usage</h3>
+                <p className="text-purple-100">You may use the App for personal purposes in accordance with:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
                   <li>All applicable laws and regulations</li>
                   <li>App store terms and conditions</li>
                   <li>These Terms of Service</li>
-                  <li>Any specific app guidelines provided</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">3. Prohibited Uses</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">4. User Accounts & Subscriptions</h3>
+                <p className="text-purple-100">You are responsible for maintaining the confidentiality of your account and credentials.</p>
+                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
+                  <li>Subscriptions and payments are processed through Google Play Billing and/or Apple In-App Purchases.</li>
+                  <li>Refunds are handled in accordance with Google Play and Apple App Store policies.</li>
+                  <li>Premium features will remain accessible only while your subscription is active.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">5. Prohibited Uses</h3>
                 <p className="text-purple-100">You agree NOT to:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Reverse engineer, decompile, or disassemble our apps</li>
-                  <li>Use our apps for illegal activities</li>
+                  <li>Reverse engineer, decompile, or disassemble the App</li>
+                  <li>Use the App for illegal or harmful activities</li>
                   <li>Attempt to gain unauthorized access to our systems</li>
-                  <li>Distribute malware or harmful content</li>
-                  <li>Violate intellectual property rights</li>
+                  <li>Upload or distribute malware, offensive, or harmful content</li>
+                  <li>Violate intellectual property rights of ZaynStudio or third parties</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">4. Intellectual Property</h3>
-                <p className="text-purple-100">ZaynStudio retains all rights, title, and interest in our apps, including:</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">6. Intellectual Property</h3>
+                <p className="text-purple-100">ZaynStudio retains all rights, title, and interest in the App, including:</p>
                 <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
                   <li>Software code and architecture</li>
                   <li>User interface and design elements</li>
                   <li>Trademarks, logos, and branding</li>
-                  <li>Content and documentation</li>
+                  <li>Content, documentation, and media assets</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">5. Disclaimer of Warranties</h3>
-                <p className="text-purple-100">Our apps are provided "as is" without warranties of any kind. We do not guarantee that our apps will be error-free, secure, or continuously available.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">7. Community Features</h3>
+                <p className="text-purple-100">Some Apps may include anonymous community statistics, badges, or achievements. You agree to use these features responsibly and not submit harmful, offensive, or misleading content.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">6. Limitation of Liability</h3>
-                <p className="text-purple-100">ZaynStudio shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our apps.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">8. Disclaimer of Warranties</h3>
+                <p className="text-purple-100">The App is provided "as is" and "as available" without warranties of any kind. We do not guarantee that the App will be error-free, secure, or continuously available.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">7. Support</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">9. Health Disclaimer</h3>
+                <p className="text-purple-100">This App provides motivational and lifestyle support only. It is not medical advice or treatment. For medical advice regarding quitting smoking or health conditions, consult a licensed healthcare professional.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">10. Limitation of Liability</h3>
+                <p className="text-purple-100">ZaynStudio shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of the App.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">11. Termination</h3>
+                <p className="text-purple-100">We may suspend or terminate your access to the App immediately, without notice, if you violate these Terms or misuse the App.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">12. Governing Law & Dispute Resolution</h3>
+                <p className="text-purple-100">These Terms shall be governed by the laws of Indonesia (or your country of residence, if required by law). Any disputes will be resolved through the appropriate courts in that jurisdiction.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-white">13. Support</h3>
                 <p className="text-purple-100">For technical support or questions, contact us at:</p>
-                <p className="text-white font-semibold">sandy@zaynstudio.app</p>
-                <p className="text-purple-200 mt-1">We strive to respond within 48 hours.</p>
+                <p className="text-white font-semibold">📧 sandy@zaynstudio.app</p>
+                <p className="text-purple-200 mt-1">We aim to respond within 48 hours.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">8. Termination</h3>
-                <p className="text-purple-100">We may terminate or suspend access to our apps immediately, without notice, for conduct that violates these Terms.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">9. Governing Law</h3>
-                <p className="text-purple-100">These Terms are governed by applicable laws. Any disputes will be resolved through appropriate legal channels.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">10. Changes to Terms</h3>
-                <p className="text-purple-100">We may modify these Terms at any time. Updated terms will be posted in our apps and on our website. Continued use constitutes acceptance.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">14. Changes to Terms</h3>
+                <p className="text-purple-100">We may modify these Terms from time to time. Updated Terms will be posted in the App and on our website. Continued use of the App constitutes acceptance of the updated Terms.</p>
               </div>
             </div>
           </div>
