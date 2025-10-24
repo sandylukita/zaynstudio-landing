@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -1074,21 +1075,21 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-2">
           {/* Legal Links */}
           <div className="flex flex-wrap items-center justify-center space-x-2 text-purple-300 text-xs font-inter">
-            <button 
-              onClick={handlePrivacyClick}
-              className="hover:text-purple-200 transition-colors cursor-pointer px-1 py-1"
+            <Link
+              href="/privacy"
+              className="hover:text-purple-200 transition-colors px-1 py-1"
             >
               Privacy Policy
-            </button>
+            </Link>
             <span>|</span>
-            <button 
-              onClick={handleTermsClick}
-              className="hover:text-purple-200 transition-colors cursor-pointer px-1 py-1"
+            <Link
+              href="/terms"
+              className="hover:text-purple-200 transition-colors px-1 py-1"
             >
               Terms of Service
-            </button>
+            </Link>
             <span>|</span>
-            <button 
+            <button
               onClick={handleContactClick}
               className="hover:text-purple-200 transition-colors cursor-pointer px-1 py-1"
             >
