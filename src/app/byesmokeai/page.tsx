@@ -145,7 +145,7 @@ export default function ByeSmokeAI() {
                 </p>
 
                 <p className="text-purple-100 text-lg mb-8 leading-relaxed">
-                  ByeSmoke AI combines Google Gemini AI coaching, an evolving pet companion (Cat → Tiger → Lion), and gamification to make quitting smoking engaging, rewarding, and successful. Watch your health recover while your pet grows!
+                  ByeSmoke AI combines intelligent AI coaching, an evolving pet companion (Cat → Tiger → Lion), and gamification to make quitting smoking engaging, rewarding, and successful. Watch your health recover while your pet grows!
                 </p>
 
                 {/* Download Buttons */}
@@ -230,8 +230,8 @@ export default function ByeSmokeAI() {
               {[
                 {
                   icon: "🤖",
-                  title: "AI Coach by Google Gemini",
-                  description: "Get personalized motivation, custom daily missions, and emotional support from Google Gemini AI that adapts to your journey stage."
+                  title: "Smart AI Coach",
+                  description: "Get personalized motivation, custom daily missions, and emotional support from AI that adapts to your journey stage."
                 },
                 {
                   icon: "🐱",
@@ -301,7 +301,7 @@ export default function ByeSmokeAI() {
                 {
                   step: "2",
                   title: "Get AI-Powered Guidance",
-                  description: "Receive personalized daily missions from Google Gemini AI. Complete check-ins, feed your pet, and earn XP and badges."
+                  description: "Receive personalized daily missions from your AI coach. Complete check-ins, feed your pet, and earn XP and badges."
                 },
                 {
                   step: "3",
