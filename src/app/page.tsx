@@ -665,7 +665,7 @@ export default function Home() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">6. Children's Privacy</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">6. Children&apos;s Privacy</h3>
                 <p className="text-purple-100">Our apps are not directed to children under 13. We do not knowingly collect personal data from children. If you believe we have collected such data, contact us to request deletion.</p>
               </div>
 
