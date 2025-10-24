@@ -12,7 +12,9 @@
       "Bash(npm run build:*)",
       "Bash(npx update-browserslist-db:*)",
       "Bash(npm start)",
-      "Bash(timeout /t 5)"
+      "Bash(timeout /t 5)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd deployment readiness report and latest updates\n\n- Add comprehensive deployment readiness analysis in tasks/todo.md\n- Update page components with latest changes\n- Update dependencies and configuration\n- All builds passing, ready for Vercel deployment\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push origin main)"
     ],
     "deny": []
   }

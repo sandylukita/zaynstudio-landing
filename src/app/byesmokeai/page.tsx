@@ -141,12 +141,11 @@ export default function ByeSmokeAI() {
                 </div>
                 
                 <p className="text-xl sm:text-2xl text-purple-200 mb-8 font-inter">
-                  Smart Quit Coach - AI-powered recommendations for your quit journey
+                  Your AI-Powered Quit Smoking Companion
                 </p>
-                
+
                 <p className="text-purple-100 text-lg mb-8 leading-relaxed">
-                  Break free from smoking with personalized AI recommendations, gamified progress tracking, and community support. 
-                  Your journey to a smoke-free life starts here.
+                  ByeSmoke AI combines Google Gemini AI coaching, an evolving pet companion (Cat → Tiger → Lion), and gamification to make quitting smoking engaging, rewarding, and successful. Watch your health recover while your pet grows!
                 </p>
 
                 {/* Download Buttons */}
@@ -179,7 +178,7 @@ export default function ByeSmokeAI() {
                 </div>
 
                 <div className="text-purple-300 text-sm">
-                  Join thousands who've successfully quit smoking with AI recommendations and community support
+                  Join thousands who've successfully quit smoking with AI coaching, pet companion, and gamified progress tracking
                 </div>
               </motion.div>
 
@@ -190,13 +189,13 @@ export default function ByeSmokeAI() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative">
+                <div className="relative max-w-[250px] md:max-w-[300px]">
                   <Image
                     src="/byesmokeai-screenshot.png"
                     alt="ByeSmoke AI App Screenshot"
-                    width={400}
-                    height={800}
-                    className="rounded-3xl shadow-2xl"
+                    width={300}
+                    height={600}
+                    className="rounded-3xl shadow-2xl w-full h-auto"
                     priority
                   />
                   {/* Floating animation */}
@@ -230,19 +229,34 @@ export default function ByeSmokeAI() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: "🎯",
-                  title: "AI-Powered Recommendations",
-                  description: "Smart daily missions and personalized tips based on your activity patterns and quit journey stage."
+                  icon: "🤖",
+                  title: "AI Coach by Google Gemini",
+                  description: "Get personalized motivation, custom daily missions, and emotional support from Google Gemini AI that adapts to your journey stage."
                 },
                 {
-                  icon: "🏆",
-                  title: "Gamified Progress",
-                  description: "Track streaks, earn badges, level up with XP, and see your savings grow with interactive progress tracking."
+                  icon: "🐱",
+                  title: "LungCat Pet Companion",
+                  description: "Watch your virtual pet evolve from Cat → Tiger → Lion as you quit smoking. Feed, play, and celebrate together!"
                 },
                 {
-                  icon: "👥",
-                  title: "Community Support",
-                  description: "Connect with others, compete on leaderboards, and stay motivated with referral rewards and social features."
+                  icon: "🎮",
+                  title: "Gamified Journey",
+                  description: "Earn 25+ badges, level up with XP, complete daily missions, and track your streak with heatmap calendar."
+                },
+                {
+                  icon: "💪",
+                  title: "Health Recovery Tracking",
+                  description: "See 8+ major health milestones in real-time, from 20 minutes to 1+ years. Watch your body heal!"
+                },
+                {
+                  icon: "💰",
+                  title: "Money Saved Calculator",
+                  description: "Track savings daily, monthly, yearly with multi-currency support. See exactly what you can buy with saved money!"
+                },
+                {
+                  icon: "🤝",
+                  title: "Community & Social Features",
+                  description: "Compare progress, share achievements, earn referral rewards. Bilingual support (English/Indonesian)."
                 }
               ].map((feature, index) => (
                 <motion.div
@@ -281,18 +295,18 @@ export default function ByeSmokeAI() {
               {[
                 {
                   step: "1",
-                  title: "Setup Your Profile",
-                  description: "Tell us about your smoking habits and goals to get personalized AI recommendations."
+                  title: "Setup & Meet Your Pet",
+                  description: "Tell us about your smoking habits, set your quit date, and meet your LungCat companion who will grow with you!"
                 },
                 {
                   step: "2",
-                  title: "Get Daily Missions",
-                  description: "Complete AI-generated daily tasks, check in regularly, and earn XP as you progress."
+                  title: "Get AI-Powered Guidance",
+                  description: "Receive personalized daily missions from Google Gemini AI. Complete check-ins, feed your pet, and earn XP and badges."
                 },
                 {
                   step: "3",
-                  title: "Level Up & Connect",
-                  description: "Unlock badges, track savings, compete with friends, and celebrate milestones together."
+                  title: "Watch Your Progress",
+                  description: "See your health recover in real-time, track money saved, watch your pet evolve (Cat→Tiger→Lion), and celebrate milestones!"
                 }
               ].map((step, index) => (
                 <motion.div
@@ -326,16 +340,16 @@ export default function ByeSmokeAI() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Ready to Quit Smoking for Good?
+              Quit Smoking. Save Money. Level Up Your Life.
             </motion.h2>
-            
+
             <motion.p
               className="text-xl text-purple-200 mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Join thousands who have successfully quit smoking with AI recommendations and community support
+              Join thousands who have successfully quit with AI coaching, pet companion, and gamified progress. Start your smoke-free journey today!
             </motion.p>
 
             <motion.div
