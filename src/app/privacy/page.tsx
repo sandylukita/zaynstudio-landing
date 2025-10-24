@@ -164,8 +164,9 @@ export default function PrivacyPolicy() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">7. Health Disclaimer</h3>
-                <p className="text-purple-100">ByeSmoke AI provides motivational support only. It is not a substitute for medical advice or treatment. Please consult a healthcare professional for medical guidance.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">7. App-Specific Disclaimers</h3>
+                <p className="text-purple-100 mb-2">Certain apps may have specific disclaimers:</p>
+                <p className="text-purple-100"><strong>Health & Wellness Apps (ByeSmoke AI):</strong> ByeSmoke AI provides motivational and lifestyle support only. It is not a substitute for medical advice or treatment. Please consult a healthcare professional for medical guidance regarding quitting smoking or health conditions.</p>
               </div>
 
               <div>

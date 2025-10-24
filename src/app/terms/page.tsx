@@ -163,8 +163,9 @@ export default function TermsOfService() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">9. Health Disclaimer</h3>
-                <p className="text-purple-100">This App provides motivational and lifestyle support only. It is not medical advice or treatment. For medical advice regarding quitting smoking or health conditions, consult a licensed healthcare professional.</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">9. App-Specific Disclaimers</h3>
+                <p className="text-purple-100 mb-2">Certain apps may have specific disclaimers:</p>
+                <p className="text-purple-100"><strong>Health & Wellness Apps (ByeSmoke AI):</strong> This app provides motivational and lifestyle support only. It is not medical advice or treatment. For medical advice regarding quitting smoking or health conditions, consult a licensed healthcare professional.</p>
               </div>
 
               <div>
