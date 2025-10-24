@@ -178,7 +178,7 @@ export default function ByeSmokeAI() {
                 </div>
 
                 <div className="text-purple-300 text-sm">
-                  Join thousands who've successfully quit smoking with AI coaching, pet companion, and gamified progress tracking
+                  Join thousands who&apos;ve successfully quit smoking with AI coaching, pet companion, and gamified progress tracking
                 </div>
               </motion.div>
 
@@ -692,7 +692,7 @@ export default function ByeSmokeAI() {
               
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">1. Acceptance of Terms</h3>
-                <p className="text-purple-100">By downloading, installing, or using any ZaynStudio app ("App"), you agree to these Terms of Service. If you do not agree, please discontinue use of the App.</p>
+                <p className="text-purple-100">By downloading, installing, or using any ZaynStudio app (&quot;App&quot;), you agree to these Terms of Service. If you do not agree, please discontinue use of the App.</p>
               </div>
 
               <div>
@@ -750,7 +750,7 @@ export default function ByeSmokeAI() {
 
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-white">8. Disclaimer of Warranties</h3>
-                <p className="text-purple-100">The App is provided "as is" and "as available" without warranties of any kind. We do not guarantee that the App will be error-free, secure, or continuously available.</p>
+                <p className="text-purple-100">The App is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind. We do not guarantee that the App will be error-free, secure, or continuously available.</p>
               </div>
 
               <div>
