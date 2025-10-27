@@ -168,7 +168,7 @@ export default function ByeSmokeAI() {
                 </div>
 
                 <div className="text-purple-300 text-sm">
-                  Join thousands who&apos;ve successfully quit smoking with AI coaching, pet companion, and gamified progress tracking
+                  Join thousands who&apos;ve successfully quit smoking with AI motivation, pet companion, and gamified progress tracking
                 </div>
               </motion.div>
 
@@ -220,7 +220,7 @@ export default function ByeSmokeAI() {
               {[
                 {
                   icon: "🤖",
-                  title: "Smart AI Coach",
+                  title: "Smart AI Motivator",
                   description: "Get personalized motivation, custom daily missions, and emotional support from AI that adapts to your journey stage."
                 },
                 {
@@ -339,7 +339,7 @@ export default function ByeSmokeAI() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Join thousands who have successfully quit with AI coaching, pet companion, and gamified progress. Start your smoke-free journey today!
+              Join thousands who have successfully quit with AI motivation, pet companion, and gamified progress. Start your smoke-free journey today!
             </motion.p>
 
             <motion.div
