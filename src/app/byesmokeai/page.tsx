@@ -135,7 +135,7 @@ export default function ByeSmokeAI() {
                 </p>
 
                 <p className="text-purple-100 text-lg mb-8 leading-relaxed">
-                  ByeSmoke AI combines intelligent AI coaching, an evolving pet companion (Cat → Tiger → Lion), and gamification to make quitting smoking engaging, rewarding, and successful. Watch your health recover while your pet grows!
+                  ByeSmoke AI combines an evolving pet companion (Cat → Tiger → Lion) and gamification to make quitting smoking engaging, rewarding, and successful. Track your health recovery while your pet grows!
                 </p>
 
                 {/* Download Buttons */}
