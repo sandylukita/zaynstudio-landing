@@ -563,27 +563,26 @@ export default function Home() {
         transition={{ duration: 0.3 }}
         style={{ pointerEvents: appsModalOpen ? 'auto' : 'none' }}
       >
-        <div 
+        <div
           className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
           onClick={() => setAppsModalOpen(false)}
         />
-        
+
         <motion.div
-          className="relative bg-purple-gradient rounded-2xl p-8 max-w-lg w-full mx-4 shadow-2xl border border-white/20"
-          initial={{ scale: 0.8, y: 50 }}
+          className="relative bg-purple-gradient rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-2xl border border-white/20 max-h-[85vh] overflow-y-auto"
+          initial={{ opacity: 0 }}
           animate={{
-            scale: appsModalOpen ? 1 : 0.8,
-            y: appsModalOpen ? 0 : 50,
+            opacity: appsModalOpen ? 1 : 0,
           }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3 }}
         >
           {/* Same background effects as main page */}
-          <div className="absolute inset-0 rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
             {/* Animated grain texture */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0 bg-noise animate-pulse"></div>
             </div>
-            
+
             {/* Mini jellyfish */}
             <motion.div
               className="absolute top-4 right-4 w-8 h-6 opacity-30 blur-sm"
@@ -602,7 +601,7 @@ export default function Home() {
                 ease: "easeInOut",
               }}
             />
-            
+
             <motion.div
               className="absolute bottom-6 left-6 w-6 h-4 opacity-25 blur-sm"
               style={{
@@ -621,7 +620,7 @@ export default function Home() {
                 delay: 1,
               }}
             />
-            
+
             {/* Mini sparkles */}
             {[...Array(4)].map((_, i) => (
               <motion.div
@@ -656,14 +655,14 @@ export default function Home() {
             </button>
 
             <motion.h2
-              className="text-3xl font-inter font-bold mb-6 text-center"
+              className="text-3xl font-inter font-bold mb-2 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
               Our Apps
             </motion.h2>
-            
+
             <motion.p
               className="text-purple-200 text-center mb-8 text-sm"
               initial={{ opacity: 0, y: 20 }}
@@ -673,53 +672,61 @@ export default function Home() {
               Innovative mobile solutions for everyday challenges
             </motion.p>
 
-            {/* ByeSmoke AI App Card */}
-            <motion.div
-              className="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="flex items-center mb-4">
-                {/* App Icon */}
-                <div className="w-16 h-16 flex items-center justify-center mr-4">
-                  <img
-                    src="/byesmokeai-logo.png"
-                    alt="ByeSmoke AI Logo"
-                    className="w-16 h-16"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-inter font-bold text-white">ByeSmoke AI</h3>
-                  <p className="text-sm text-purple-200">AI-powered smoking cessation</p>
-                </div>
-              </div>
-              
-              <p className="text-purple-100 text-sm mb-4 leading-relaxed">
-                Your intelligent companion for quitting smoking. Personalized AI coaching, progress tracking, and support when you need it most.
-              </p>
-              
-              <motion.button
+            {/* Apps Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* ByeSmoke AI App Card */}
+              <motion.div
+                className="bg-white/10 rounded-lg p-5 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
                 onClick={() => handleVisitAppPage('byesmokeai')}
-                className="w-full bg-white/15 rounded-lg py-3 px-4 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors font-inter font-medium text-white"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
-                Visit App Page
-              </motion.button>
-            </motion.div>
+                <div className="flex items-start gap-4 mb-3">
+                  {/* App Icon */}
+                  <div className="w-14 h-14 flex-shrink-0">
+                    <img
+                      src="/byesmokeai-logo.png"
+                      alt="ByeSmoke AI Logo"
+                      className="w-14 h-14 rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-inter font-bold text-white mb-1">ByeSmoke AI</h3>
+                    <p className="text-xs text-purple-200">AI-powered smoking cessation</p>
+                  </div>
+                </div>
 
-            {/* Coming Soon Section */}
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="text-purple-300 text-sm font-inter">
-                📱 More innovative apps coming soon...
-              </div>
-            </motion.div>
+                <p className="text-purple-100 text-sm leading-relaxed">
+                  Your intelligent companion for quitting smoking. Personalized AI motivation, progress tracking, and support when you need it most.
+                </p>
+              </motion.div>
+
+              {/* Coming Soon Placeholder Cards */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={`placeholder-${i}`}
+                  className="bg-white/5 rounded-lg p-5 backdrop-blur-sm border border-white/10 border-dashed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + (i + 1) * 0.05 }}
+                >
+                  <div className="flex items-start gap-4 mb-3">
+                    <div className="w-14 h-14 flex-shrink-0 bg-white/10 rounded-lg flex items-center justify-center">
+                      <span className="text-2xl">📱</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-inter font-bold text-white/40 mb-1">Coming Soon</h3>
+                      <p className="text-xs text-purple-300/40">More apps in development</p>
+                    </div>
+                  </div>
+
+                  <p className="text-purple-200/40 text-sm leading-relaxed">
+                    We&apos;re working on exciting new apps to help you with everyday challenges.
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </motion.div>
