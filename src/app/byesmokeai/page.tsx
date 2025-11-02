@@ -154,7 +154,7 @@ export default function ByeSmokeAI() {
                   </motion.a>
                   
                   <motion.a
-                    href="#"
+                    href="https://play.google.com/store/apps/details?id=com.zaynstudio.byesmoke"
                     className="inline-block"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -362,7 +362,7 @@ export default function ByeSmokeAI() {
               </motion.a>
               
               <motion.a
-                href="#"
+                href="https://play.google.com/store/apps/details?id=com.zaynstudio.byesmoke"
                 className="inline-block"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
