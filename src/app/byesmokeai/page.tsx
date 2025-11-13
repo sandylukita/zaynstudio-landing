@@ -141,7 +141,7 @@ export default function ByeSmokeAI() {
                 {/* Download Buttons */}
                 <div className="flex flex-row gap-4 mb-8 justify-center lg:justify-start">
                   <motion.a
-                    href="#"
+                    href="https://apps.apple.com/us/app/byesmoke-ai-smart-quit-coach/id6754634544"
                     className="inline-block"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -349,7 +349,7 @@ export default function ByeSmokeAI() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <motion.a
-                href="#"
+                href="https://apps.apple.com/us/app/byesmoke-ai-smart-quit-coach/id6754634544"
                 className="inline-block"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
