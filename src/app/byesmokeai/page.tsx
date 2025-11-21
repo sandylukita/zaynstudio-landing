@@ -172,7 +172,13 @@ export default function ByeSmokeAI() {
 
                 {/* Social Proof */}
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
-                  <span className="text-2xl">⭐</span>
+                  <div className="flex gap-1">
+                    <span className="text-xl">⭐</span>
+                    <span className="text-xl">⭐</span>
+                    <span className="text-xl">⭐</span>
+                    <span className="text-xl">⭐</span>
+                    <span className="text-xl">⭐</span>
+                  </div>
                   <p className="text-purple-100 text-sm font-medium">
                     Join thousands of happy quitters
                   </p>

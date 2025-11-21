@@ -27,7 +27,8 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd Google Play Store link to ByeSmoke AI page\n\n- Update Google Play badge links with actual Play Store URL\n- Link to com.zaynstudio.byesmoke app listing\n- Updated both hero and CTA section badges\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd app-ads.txt for AdMob verification\n\n- Create app-ads.txt file in public directory\n- Add AdMob publisher ID: pub-1627952637319380\n- File accessible at zaynstudio.com/app-ads.txt\n- Works for all apps under this AdMob account\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd Apple App Store link to ByeSmoke AI page\n\n- Update App Store badge links in hero section and CTA section\n- Link to byesmoke-ai-smart-quit-coach app on App Store\n- Both download badges (iOS and Android) now functional\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }
