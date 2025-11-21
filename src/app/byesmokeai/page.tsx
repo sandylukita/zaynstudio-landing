@@ -117,26 +117,29 @@ export default function ByeSmokeAI() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="flex items-center justify-center lg:justify-start mb-4">
-                  <div className="w-16 h-16 flex items-center justify-center mr-4">
-                    <img
-                      src="/byesmokeai-logo.png"
-                      alt="ByeSmoke AI Logo"
-                      className="w-16 h-16"
-                    />
-                  </div>
-                  <h1 className="text-4xl sm:text-5xl font-inter font-bold text-white">
-                    ByeSmoke AI
-                  </h1>
-                </div>
-                
-                <p className="text-xl sm:text-2xl text-purple-200 mb-8 font-inter">
-                  Your AI-Powered Quit Smoking Companion
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-inter font-bold text-white mb-6 leading-tight">
+                  Quit Smoking. Save Money. Level Up Your Life.
+                </h1>
+
+                <p className="text-xl sm:text-2xl text-purple-200 mb-6 font-inter leading-relaxed">
+                  The AI-powered tracker where your health recovery evolves a virtual pet. Stop smoking & vaping for good.
                 </p>
 
-                <p className="text-purple-100 text-lg mb-8 leading-relaxed">
-                  ByeSmoke AI combines an evolving pet companion (Cat → Tiger → Lion) and gamification to make quitting smoking engaging, rewarding, and successful. Track your health recovery while your pet grows!
-                </p>
+                {/* 3 Key Value Props */}
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 text-xl flex-shrink-0">✅</span>
+                    <p className="text-purple-100 text-lg">Evolving Pet Companion (Cat → Tiger → Lion)</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 text-xl flex-shrink-0">✅</span>
+                    <p className="text-purple-100 text-lg">Gamified Health Tracking & XP</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 text-xl flex-shrink-0">✅</span>
+                    <p className="text-purple-100 text-lg">Works for Smoking & Vaping</p>
+                  </div>
+                </div>
 
                 {/* Download Buttons */}
                 <div className="flex flex-row gap-4 mb-8 justify-center lg:justify-start">
@@ -167,8 +170,12 @@ export default function ByeSmokeAI() {
                   </motion.a>
                 </div>
 
-                <div className="text-purple-300 text-sm">
-                  Join thousands who&apos;ve successfully quit smoking with AI motivation, pet companion, and gamified progress tracking
+                {/* Social Proof */}
+                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+                  <span className="text-2xl">⭐</span>
+                  <p className="text-purple-100 text-sm font-medium">
+                    Join thousands of happy quitters
+                  </p>
                 </div>
               </motion.div>
 
@@ -219,14 +226,20 @@ export default function ByeSmokeAI() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: "🤖",
-                  title: "Smart AI Motivator",
-                  description: "Get personalized motivation, custom daily missions, and emotional support from AI that adapts to your journey stage."
-                },
-                {
                   icon: "🐱",
                   title: "LungCat Pet Companion",
-                  description: "Watch your virtual pet evolve from Cat → Tiger → Lion as you quit smoking. Feed, play, and celebrate together!"
+                  description: "Watch your virtual pet evolve from Cat → Tiger → Lion as your health recovers. Feed, play, and celebrate together!",
+                  highlight: true
+                },
+                {
+                  icon: "💰",
+                  title: "Money Saved Tracker",
+                  description: "Track every dollar saved from cigarettes or vape pods. See exactly what you can buy with your savings!"
+                },
+                {
+                  icon: "💪",
+                  title: "Health Timeline",
+                  description: "Real-time recovery stats showing your body healing from smoking and vaping, milestone by milestone."
                 },
                 {
                   icon: "🎮",
@@ -234,24 +247,23 @@ export default function ByeSmokeAI() {
                   description: "Earn 25+ badges, level up with XP, complete daily missions, and track your streak with heatmap calendar."
                 },
                 {
-                  icon: "💪",
-                  title: "Health Recovery Tracking",
-                  description: "See 8+ major health milestones in real-time, from 20 minutes to 1+ years. Watch your body heal!"
-                },
-                {
-                  icon: "💰",
-                  title: "Money Saved Calculator",
-                  description: "Track savings daily, monthly, yearly with multi-currency support. See exactly what you can buy with saved money!"
+                  icon: "🤖",
+                  title: "Smart AI Motivator",
+                  description: "Get personalized motivation, custom daily missions, and emotional support from AI that adapts to your journey stage."
                 },
                 {
                   icon: "🤝",
-                  title: "Community & Social Features",
+                  title: "Community & Social",
                   description: "Compare progress, share achievements, earn referral rewards. Bilingual support (English/Indonesian)."
                 }
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                  className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 border ${
+                    feature.highlight
+                      ? 'border-purple-400 ring-2 ring-purple-400/50 bg-white/15'
+                      : 'border-white/20'
+                  }`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -339,7 +351,7 @@ export default function ByeSmokeAI() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Join thousands who have successfully quit with AI motivation, pet companion, and gamified progress. Start your smoke-free journey today!
+              Join thousands who have successfully quit smoking and vaping with AI motivation, pet companion, and gamified progress. Start your smoke-free journey today!
             </motion.p>
 
             <motion.div
