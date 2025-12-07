@@ -90,7 +90,7 @@ export default function Contact() {
       </header>
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-20">
+      <div className="relative z-10 flex items-center justify-center px-4" style={{ minHeight: 'calc(100vh - 200px)' }}>
         <div className="max-w-2xl w-full">
           <motion.div
             className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/20 text-center"
