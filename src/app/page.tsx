@@ -658,24 +658,24 @@ export default function Home() {
       <footer className="absolute bottom-8 left-0 right-0 text-center z-20">
         <div className="flex flex-col items-center space-y-2">
           {/* Legal Links */}
-          <div className="flex flex-wrap items-center justify-center space-x-2 text-purple-300 text-xs font-inter">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-purple-300 text-xs font-inter">
             <Link
               href="/privacy"
-              className="hover:text-purple-200 transition-colors px-1 py-1"
+              className="hover:text-purple-200 transition-colors"
             >
               Privacy Policy
             </Link>
             <span>|</span>
             <Link
               href="/terms"
-              className="hover:text-purple-200 transition-colors px-1 py-1"
+              className="hover:text-purple-200 transition-colors"
             >
               Terms of Service
             </Link>
             <span>|</span>
             <Link
               href="/contact"
-              className="hover:text-purple-200 transition-colors px-1 py-1"
+              className="hover:text-purple-200 transition-colors"
             >
               Contact
             </Link>
