@@ -29,7 +29,9 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd Apple App Store link to ByeSmoke AI page\n\n- Update App Store badge links in hero section and CTA section\n- Link to byesmoke-ai-smart-quit-coach app on App Store\n- Both download badges (iOS and Android) now functional\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(curl:*)",
       "Bash(git commit:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(npm outdated:*)",
+      "Bash(npm audit fix:*)"
     ],
     "deny": []
   }
