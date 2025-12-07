@@ -7,32 +7,12 @@ import Link from 'next/link';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [contactModalOpen, setContactModalOpen] = useState(false);
   const [aboutModalOpen, setAboutModalOpen] = useState(false);
   const [appsModalOpen, setAppsModalOpen] = useState(false);
-
-  const copyEmailToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText('sandy@zaynstudio.app');
-      // You could add a toast notification here later
-    } catch (err) {
-      console.error('Failed to copy email: ', err);
-    }
-  };
-
-  const handleContactClick = () => {
-    setMenuOpen(false); // Close hamburger menu
-    setContactModalOpen(true); // Open contact modal
-  };
 
   const handleAboutClick = () => {
     setMenuOpen(false); // Close hamburger menu
     setAboutModalOpen(true); // Open about modal
-  };
-
-  const handleContactUsClick = () => {
-    setAboutModalOpen(false); // Close about modal
-    setContactModalOpen(true); // Open contact modal
   };
 
   const handleAppsClick = () => {
@@ -253,149 +233,23 @@ export default function Home() {
                 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className="hover:text-purple-300 cursor-pointer transition-colors"
-                onClick={
-                  item === 'Contact' ? handleContactClick :
-                  item === 'About' ? handleAboutClick :
-                  item === 'Apps' ? handleAppsClick : undefined
-                }
               >
-                {item}
+                {item === 'Contact' ? (
+                  <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                    {item}
+                  </Link>
+                ) : (
+                  <span onClick={
+                    item === 'About' ? handleAboutClick :
+                    item === 'Apps' ? handleAppsClick : undefined
+                  }>
+                    {item}
+                  </span>
+                )}
               </motion.li>
             ))}
           </motion.ul>
         </nav>
-      </motion.div>
-
-      {/* Contact Modal */}
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: contactModalOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: contactModalOpen ? 'auto' : 'none' }}
-      >
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-          onClick={() => setContactModalOpen(false)}
-        />
-        
-        {/* Modal Content */}
-        <motion.div
-          className="relative bg-purple-gradient rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl border border-white/20"
-          initial={{ scale: 0.8, y: 50 }}
-          animate={{
-            scale: contactModalOpen ? 1 : 0.8,
-            y: contactModalOpen ? 0 : 50,
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          {/* Same background effects as main page */}
-          <div className="absolute inset-0 rounded-2xl overflow-hidden">
-            {/* Animated grain texture */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-noise animate-pulse"></div>
-            </div>
-            
-            {/* Mini jellyfish */}
-            <motion.div
-              className="absolute top-4 right-4 w-8 h-6 opacity-30 blur-sm"
-              style={{
-                background: 'radial-gradient(ellipse, #7C3AED 0%, transparent 70%)',
-                borderRadius: '60% 40% 50% 70%',
-              }}
-              animate={{
-                x: [0, 10, 0],
-                y: [0, -5, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            
-            {/* Mini sparkles */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`modal-sparkle-${i}`}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                style={{
-                  top: `${20 + i * 25}%`,
-                  left: `${10 + i * 30}%`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Modal Content */}
-          <div className="relative z-10 text-center text-white">
-            {/* Close button */}
-            <button
-              onClick={() => setContactModalOpen(false)}
-              className="absolute -top-2 -right-2 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-            >
-              <span className="text-white text-lg">×</span>
-            </button>
-
-            <motion.h2
-              className="text-3xl font-inter font-bold mb-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              Get Support
-            </motion.h2>
-            
-            <motion.p
-              className="text-purple-200 mb-6 text-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              Questions about our apps? Feedback? Bug reports?
-            </motion.p>
-
-            <motion.div
-              className="bg-white/10 rounded-lg p-4 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-colors cursor-pointer"
-              onClick={copyEmailToClipboard}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="text-lg font-inter font-semibold mb-1">
-                sandy@zaynstudio.app
-              </div>
-              <div className="text-xs text-purple-200">
-                Click to copy
-              </div>
-            </motion.div>
-            
-            <motion.p
-              className="text-xs text-purple-300 mt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              We love hearing from you
-            </motion.p>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* About Modal */}
@@ -540,14 +394,16 @@ export default function Home() {
                 Let&apos;s connect!
               </div>
               
-              <motion.button
-                onClick={handleContactUsClick}
-                className="bg-white/15 rounded-lg px-6 py-3 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors font-inter font-medium"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Contact us
-              </motion.button>
+              <Link href="/contact">
+                <motion.button
+                  onClick={() => setAboutModalOpen(false)}
+                  className="bg-white/15 rounded-lg px-6 py-3 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors font-inter font-medium w-full"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Contact us
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
@@ -817,12 +673,12 @@ export default function Home() {
               Terms of Service
             </Link>
             <span>|</span>
-            <button
-              onClick={handleContactClick}
-              className="hover:text-purple-200 transition-colors cursor-pointer px-1 py-1"
+            <Link
+              href="/contact"
+              className="hover:text-purple-200 transition-colors px-1 py-1"
             >
               Contact
-            </button>
+            </Link>
           </div>
           
           {/* Copyright */}
