@@ -57,7 +57,7 @@ export default function MambaFocusPage() {
                     </h1>
 
                     <p className="text-lg md:text-2xl text-gray-400 max-w-3xl mb-12 font-mono leading-relaxed border-l-4 border-yellow-500 pl-6 text-left md:text-center md:border-l-0 md:pl-0">
-                        <span className="text-white font-heavy text-2xl tracking-wide">STANDARD MODE (25M)</span> <span className="text-yellow-500 mx-2">//</span> <span className="text-red-500 font-heavy text-2xl tracking-wide">MAMBA MODE (4x25M CHAIN)</span><br className="hidden md:block" />
+                        <span className="text-white font-heavy text-2xl tracking-wide">STANDARD MODE (25M)</span> <span className="text-yellow-500 mx-2">//</span> <span className="text-red-500 font-heavy text-2xl tracking-wide">MAMBA MODE (4x25M CHAIN)</span><br />
                         There is no pause button. Initiate lockdown protocol.
                     </p>
 
