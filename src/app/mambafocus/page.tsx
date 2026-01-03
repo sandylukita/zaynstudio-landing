@@ -1,29 +1,27 @@
+'use client';
+
 import React from 'react';
-import type { Metadata } from 'next';
 import Image from 'next/image';
 
-export const metadata: Metadata = {
-    title: 'Mamba Focus - The No Mercy Focus Timer',
-    description: 'Flip to Focus. Fail and be Shamed. Mamba Focus uses "No Mercy" mechanics to force discipline. There is no pause button.',
-    openGraph: {
-        title: 'Mamba Focus - No Mercy Focus Timer',
-        description: 'The ONLY way to start a session is to place your phone face down. Fail, and you hit the public Wall of Shame.',
-        url: 'https://zaynstudio.app/mambafocus',
-        siteName: 'Zayn Studio',
-        images: [
-            {
-                url: '/logo.png',
-                width: 1200,
-                height: 630,
-                alt: 'Mamba Focus App',
-            },
-        ],
-        locale: 'en_US',
-        type: 'website',
-    },
-};
-
 export default function MambaFocusPage() {
+    // Device detection and app store redirect
+    const handleDownload = () => {
+        const userAgent = navigator.userAgent || navigator.vendor;
+
+        // iOS detection
+        if (/iPad|iPhone|iPod/.test(userAgent)) {
+            window.location.href = 'https://apps.apple.com/app/mamba-focus'; // Replace with actual App Store URL
+        }
+        // Android detection
+        else if (/android/i.test(userAgent)) {
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.zaynstudio.mambafocus'; // Replace with actual Play Store URL
+        }
+        // Desktop - scroll to badges or show both options
+        else {
+            document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="min-h-screen bg-black text-white selection:bg-yellow-500 selection:text-black font-sans overflow-x-hidden">
             {/* Background Grid & Noise & Overlays */}
@@ -62,20 +60,20 @@ export default function MambaFocusPage() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-20">
-                        <a href="#download" className="w-full sm:w-auto relative group overflow-hidden">
+                        <div onClick={handleDownload} className="w-full sm:w-auto relative group overflow-hidden cursor-pointer">
                             <div className="absolute inset-0 bg-red-700/20 group-hover:bg-red-600/30 transition-colors"></div>
                             <button className="relative w-full sm:w-auto px-10 py-5 bg-red-700 hover:bg-red-600 text-white font-heavy font-bold text-3xl tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(220,38,38,0.5)] border-t-2 border-red-500 border-b-4 border-red-900 active:translate-y-1 active:border-b-2">
                                 <div className="absolute inset-0 scanlines opacity-30"></div>
                                 Initiate Lockdown
                             </button>
-                        </a>
+                        </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-12 opacity-80 hover:opacity-100 transition-opacity">
-                        <a href="#" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
+                        <a href="https://apps.apple.com/app/mamba-focus" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
                             <Image src="/app-store-badge.svg" width={140} height={42} alt="Download on the App Store" />
                         </a>
-                        <a href="#" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
+                        <a href="https://play.google.com/store/apps/details?id=com.zaynstudio.mambafocus" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
                             <Image src="/google-play-badge.svg" width={140} height={42} alt="Get it on Google Play" />
                         </a>
                     </div>
@@ -183,7 +181,7 @@ export default function MambaFocusPage() {
                         <p className="text-xl text-gray-400 mb-12 font-mono">Join the ranks. Face down to survive.</p>
 
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                            <button className="relative px-12 py-6 bg-red-700 hover:bg-red-600 text-white font-heavy font-bold text-4xl tracking-widest uppercase transition-all shadow-[0_0_40px_rgba(220,38,38,0.4)] border-2 border-red-500 active:scale-95">
+                            <button onClick={handleDownload} className="relative px-12 py-6 bg-red-700 hover:bg-red-600 text-white font-heavy font-bold text-4xl tracking-widest uppercase transition-all shadow-[0_0_40px_rgba(220,38,38,0.4)] border-2 border-red-500 active:scale-95 cursor-pointer">
                                 <div className="absolute inset-0 scanlines opacity-30"></div>
                                 Initialize Download
                             </button>
