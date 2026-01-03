@@ -467,7 +467,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="absolute bottom-8 left-0 right-0 text-center z-20">
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center space-y-4">
           {/* Legal Links */}
           <div className="flex flex-wrap items-center justify-center gap-3 text-purple-300 text-xs font-inter">
             <Link
