@@ -18,8 +18,8 @@ export default function Apps() {
     {
       id: 'mambafocus',
       name: 'Mamba Focus',
-      tagline: 'Tactical focus timer',
-      description: 'Military-grade focus timer with mission-based productivity. Complete tactical sessions and dominate your objectives.',
+      tagline: 'The No Mercy Focus Timer',
+      description: 'Flip to Focus. Fail and be Shamed. Mamba Focus uses "No Mercy" mechanics to force discipline. There is no pause button.',
       icon: '🎯',
       available: true,
       link: '/mambafocus',
