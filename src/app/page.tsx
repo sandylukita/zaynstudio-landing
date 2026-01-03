@@ -8,22 +8,10 @@ import Link from 'next/link';
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutModalOpen, setAboutModalOpen] = useState(false);
-  const [appsModalOpen, setAppsModalOpen] = useState(false);
 
   const handleAboutClick = () => {
     setMenuOpen(false); // Close hamburger menu
     setAboutModalOpen(true); // Open about modal
-  };
-
-  const handleAppsClick = () => {
-    setMenuOpen(false); // Close hamburger menu
-    setAppsModalOpen(true); // Open apps modal
-  };
-
-  const handleVisitAppPage = (appName: string) => {
-    setAppsModalOpen(false); // Close apps modal
-    // Navigate to app page (for now, we'll use window.location)
-    window.location.href = `/${appName}`;
   };
 
   return (
@@ -238,11 +226,12 @@ export default function Home() {
                   <Link href="/contact" onClick={() => setMenuOpen(false)}>
                     {item}
                   </Link>
+                ) : item === 'Apps' ? (
+                  <Link href="/apps" onClick={() => setMenuOpen(false)}>
+                    {item}
+                  </Link>
                 ) : (
-                  <span onClick={
-                    item === 'About' ? handleAboutClick :
-                    item === 'Apps' ? handleAppsClick : undefined
-                  }>
+                  <span onClick={item === 'About' ? handleAboutClick : undefined}>
                     {item}
                   </span>
                 )}
@@ -405,184 +394,6 @@ export default function Home() {
                 </motion.button>
               </Link>
             </motion.div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Apps Modal */}
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: appsModalOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: appsModalOpen ? 'auto' : 'none' }}
-      >
-        <div
-          className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-          onClick={() => setAppsModalOpen(false)}
-        />
-
-        <motion.div
-          className="relative bg-purple-gradient rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-2xl border border-white/20 max-h-[85vh] overflow-y-auto"
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: appsModalOpen ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Same background effects as main page */}
-          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-            {/* Animated grain texture */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-noise animate-pulse"></div>
-            </div>
-
-            {/* Mini jellyfish */}
-            <motion.div
-              className="absolute top-4 right-4 w-8 h-6 opacity-30 blur-sm"
-              style={{
-                background: 'radial-gradient(ellipse, #C084FC 0%, transparent 70%)',
-                borderRadius: '50% 70% 60% 40%',
-              }}
-              animate={{
-                x: [0, 8, 0],
-                y: [0, -6, 0],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-
-            <motion.div
-              className="absolute bottom-6 left-6 w-6 h-4 opacity-25 blur-sm"
-              style={{
-                background: 'radial-gradient(ellipse, #7C3AED 0%, transparent 70%)',
-                borderRadius: '40% 60% 70% 50%',
-              }}
-              animate={{
-                x: [0, -6, 0],
-                y: [0, 4, 0],
-                scale: [1, 1.08, 1],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
-
-            {/* Mini sparkles */}
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={`apps-sparkle-${i}`}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                style={{
-                  top: `${15 + i * 20}%`,
-                  left: `${15 + i * 25}%`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2.5 + i * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.6,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Modal Content */}
-          <div className="relative z-10 text-white">
-            {/* Close button */}
-            <button
-              onClick={() => setAppsModalOpen(false)}
-              className="absolute -top-2 -right-2 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-            >
-              <span className="text-white text-lg">×</span>
-            </button>
-
-            <motion.h2
-              className="text-3xl font-inter font-bold mb-2 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              Our Apps
-            </motion.h2>
-
-            <motion.p
-              className="text-purple-200 text-center mb-8 text-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              Innovative mobile solutions for everyday challenges
-            </motion.p>
-
-            {/* Apps Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* ByeSmoke AI App Card */}
-              <motion.div
-                className="bg-white/10 rounded-lg p-5 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => handleVisitAppPage('byesmokeai')}
-              >
-                <div className="flex items-start gap-4 mb-3">
-                  {/* App Icon */}
-                  <div className="w-14 h-14 flex-shrink-0">
-                    <img
-                      src="/byesmokeai-logo.png"
-                      alt="ByeSmoke AI Logo"
-                      className="w-14 h-14 rounded-lg"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-inter font-bold text-white mb-1">ByeSmoke AI</h3>
-                    <p className="text-xs text-purple-200">AI-powered smoking cessation</p>
-                  </div>
-                </div>
-
-                <p className="text-purple-100 text-sm leading-relaxed">
-                  Your intelligent companion for quitting smoking. Personalized AI motivation, progress tracking, and support when you need it most.
-                </p>
-              </motion.div>
-
-              {/* Coming Soon Placeholder Cards */}
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={`placeholder-${i}`}
-                  className="bg-white/5 rounded-lg p-5 backdrop-blur-sm border border-white/10 border-dashed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + (i + 1) * 0.05 }}
-                >
-                  <div className="flex items-start gap-4 mb-3">
-                    <div className="w-14 h-14 flex-shrink-0 bg-white/10 rounded-lg flex items-center justify-center">
-                      <span className="text-2xl">📱</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-inter font-bold text-white/40 mb-1">Coming Soon</h3>
-                      <p className="text-xs text-purple-300/40">More apps in development</p>
-                    </div>
-                  </div>
-
-                  <p className="text-purple-200/40 text-sm leading-relaxed">
-                    We&apos;re working on exciting new apps to help you with everyday challenges.
-                  </p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </motion.div>
       </motion.div>
