@@ -466,7 +466,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-8 left-0 right-0 text-center z-20">
+      <footer className="relative z-20 py-8 px-4 text-center">
         <div className="flex flex-col items-center space-y-4">
           {/* Legal Links */}
           <div className="flex flex-wrap items-center justify-center gap-3 text-purple-300 text-xs font-inter">
@@ -491,7 +491,7 @@ export default function Home() {
               Contact
             </Link>
           </div>
-          
+
           {/* Copyright */}
           <p className="text-purple-300 text-sm font-inter">
             © 2025 ZaynStudio. All rights reserved.
