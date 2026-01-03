@@ -12,7 +12,18 @@ export default function Apps() {
       description: 'Your intelligent companion for quitting smoking. Personalized AI motivation, progress tracking, and support when you need it most.',
       icon: '🚭',
       available: true,
-      link: '/byesmokeai'
+      link: '/byesmokeai',
+      logo: '/byesmokeai-logo.png'
+    },
+    {
+      id: 'mambafocus',
+      name: 'Mamba Focus',
+      tagline: 'Tactical focus timer',
+      description: 'Military-grade focus timer with mission-based productivity. Complete tactical sessions and dominate your objectives.',
+      icon: '🎯',
+      available: true,
+      link: '/mambafocus',
+      logo: '/mamba-logo.png'
     },
     {
       id: 'coming-soon-1',
@@ -40,14 +51,6 @@ export default function Apps() {
     },
     {
       id: 'coming-soon-4',
-      name: 'Coming Soon',
-      tagline: 'More apps in development',
-      description: "We're working on exciting new apps to help you with everyday challenges.",
-      icon: '📱',
-      available: false
-    },
-    {
-      id: 'coming-soon-5',
       name: 'Coming Soon',
       tagline: 'More apps in development',
       description: "We're working on exciting new apps to help you with everyday challenges.",
@@ -158,7 +161,13 @@ export default function Apps() {
                 {app.available && app.link ? (
                   <Link href={app.link}>
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 hover:border-purple-400 transition-all cursor-pointer h-full">
-                      <div className="text-5xl mb-4">{app.icon}</div>
+                      <div className="mb-4">
+                        {app.logo ? (
+                          <img src={app.logo} alt={`${app.name} logo`} className="w-16 h-16 rounded-xl" />
+                        ) : (
+                          <div className="text-5xl">{app.icon}</div>
+                        )}
+                      </div>
                       <h3 className="text-xl font-inter font-bold text-white mb-2">
                         {app.name}
                       </h3>
@@ -172,7 +181,13 @@ export default function Apps() {
                   </Link>
                 ) : (
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 h-full opacity-60">
-                    <div className="text-5xl mb-4">{app.icon}</div>
+                    <div className="mb-4">
+                      {app.logo ? (
+                        <img src={app.logo} alt={`${app.name} logo`} className="w-16 h-16 rounded-xl opacity-40" />
+                      ) : (
+                        <div className="text-5xl">{app.icon}</div>
+                      )}
+                    </div>
                     <h3 className="text-xl font-inter font-bold text-white mb-2">
                       {app.name}
                     </h3>
