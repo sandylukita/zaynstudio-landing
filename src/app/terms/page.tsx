@@ -166,6 +166,7 @@ export default function TermsOfService() {
                 <h3 className="text-lg font-semibold mb-2 text-white">9. App-Specific Disclaimers</h3>
                 <p className="text-purple-100 mb-2">Certain apps may have specific disclaimers:</p>
                 <p className="text-purple-100"><strong>Health & Wellness Apps (ByeSmoke AI):</strong> This app provides motivational and lifestyle support only. It is not medical advice or treatment. For medical advice regarding quitting smoking or health conditions, consult a licensed healthcare professional.</p>
+                <p className="text-purple-100 mt-4"><strong>Mamba Focus:</strong> This app incorporates "No Mercy" mechanics designed to be inherently difficult and unforgiving. Failed sessions (e.g., picking up your phone) result in immediate failure and potential public listing on the "Wall of Shame". By using the App, you agree that your chosen "Call Sign" and failure statistics may be publicly displayed to other users. Refunds are not issued for failed focus sessions or dissatisfaction with the intended difficulty of the application's core mechanics.</p>
               </div>
 
               <div>

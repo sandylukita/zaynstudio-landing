@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bebas_Neue, Courier_Prime } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,7 +8,22 @@ const inter = Inter({
   display: "swap",
 });
 
+const bebas = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const courier = Courier_Prime({
+  weight: ["400", "700"],
+  variable: "--font-courier",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
+  // ... (metadata remains the same)
   title: "Zayn Studio - Apps that reshape reality",
   description: "ZaynStudio is an app holding company creating innovative applications that reshape reality and change lives.",
   icons: {
@@ -51,7 +66,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-inter antialiased`}
+        className={`${inter.variable} ${bebas.variable} ${courier.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>

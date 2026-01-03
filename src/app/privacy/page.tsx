@@ -167,6 +167,7 @@ export default function PrivacyPolicy() {
                 <h3 className="text-lg font-semibold mb-2 text-white">7. App-Specific Disclaimers</h3>
                 <p className="text-purple-100 mb-2">Certain apps may have specific disclaimers:</p>
                 <p className="text-purple-100"><strong>Health & Wellness Apps (ByeSmoke AI):</strong> ByeSmoke AI provides motivational and lifestyle support only. It is not a substitute for medical advice or treatment. Please consult a healthcare professional for medical guidance regarding quitting smoking or health conditions.</p>
+                <p className="text-purple-100 mt-4"><strong>Productivity Apps (Mamba Focus):</strong> By using Mamba Focus, you acknowledge and agree that specific session data (your "Call Sign", session duration, and failure timestamp) will be <strong>publicly broadcasted</strong> to the global "Wall of Shame" upon session failure. This is a core accountability feature of the app. We also access device motion sensors (accelerometer/gyroscope) solely to detect phone orientation ("Flip to Focus") during active sessions.</p>
               </div>
 
               <div>
