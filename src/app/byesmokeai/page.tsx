@@ -386,41 +386,33 @@ export default function ByeSmokeAI() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex flex-col items-center space-y-4">
             {/* Legal Links */}
-            <div className="flex flex-wrap items-center justify-center space-x-2 text-purple-300 text-xs font-inter">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-purple-300 text-xs font-inter">
               <Link
                 href="/privacy"
-                className="hover:text-purple-200 transition-colors px-1 py-1"
+                className="hover:text-purple-200 transition-colors"
               >
                 Privacy Policy
               </Link>
               <span>|</span>
               <Link
                 href="/terms"
-                className="hover:text-purple-200 transition-colors px-1 py-1"
+                className="hover:text-purple-200 transition-colors"
               >
                 Terms of Service
               </Link>
               <span>|</span>
               <Link
                 href="/contact"
-                className="hover:text-purple-200 transition-colors px-1 py-1"
+                className="hover:text-purple-200 transition-colors"
               >
                 Contact
               </Link>
             </div>
-            
+
             {/* Copyright */}
             <p className="text-purple-300 text-sm font-inter">
               © 2025 ZaynStudio. All rights reserved.
             </p>
-            
-            {/* Back to ZaynStudio */}
-            <Link 
-              href="/"
-              className="text-purple-300 hover:text-purple-200 transition-colors font-inter text-sm"
-            >
-              ← Back to ZaynStudio
-            </Link>
           </div>
         </div>
       </footer>
