@@ -10,11 +10,11 @@ export default function MambaFocusPage() {
 
         // iOS detection
         if (/iPad|iPhone|iPod/.test(userAgent)) {
-            window.location.href = 'https://apps.apple.com/app/mamba-focus'; // Replace with actual App Store URL
+            window.location.href = 'https://apps.apple.com/us/app/mamba-focus-no-mercy-timer/id6757320949';
         }
         // Android detection
         else if (/android/i.test(userAgent)) {
-            window.location.href = 'https://play.google.com/store/apps/details?id=com.zaynstudio.mambafocus'; // Replace with actual Play Store URL
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.mambafocus.app';
         }
         // Desktop - scroll to badges or show both options
         else {
@@ -70,10 +70,10 @@ export default function MambaFocusPage() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-12 opacity-80 hover:opacity-100 transition-opacity">
-                        <a href="https://apps.apple.com/app/mamba-focus" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
+                        <a href="https://apps.apple.com/us/app/mamba-focus-no-mercy-timer/id6757320949" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
                             <Image src="/app-store-badge.svg" width={140} height={42} alt="Download on the App Store" />
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.zaynstudio.mambafocus" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
+                        <a href="https://play.google.com/store/apps/details?id=com.mambafocus.app" className="transition-transform hover:scale-105 active:scale-95 grayscale hover:grayscale-0">
                             <Image src="/google-play-badge.svg" width={140} height={42} alt="Get it on Google Play" />
                         </a>
                     </div>
