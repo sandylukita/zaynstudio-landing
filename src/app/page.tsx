@@ -174,7 +174,12 @@ export default function ZaynStudioFuturistic() {
           >
             <h2 className="text-[12vw] md:text-[8.5rem] font-bold tracking-[-0.05em] leading-[0.8] mb-8">
               <span className="block drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]">RESHAPING</span>
-              <span className="block text-outline opacity-100 md:opacity-70 drop-shadow-[0_0_30px_rgba(0,0,0,1)] drop-shadow-[0_0_10px_rgba(0,0,0,1)] drop-shadow-[0_0_5px_rgba(0,0,0,1)] mt-2">REALITY.</span>
+              <span
+                className="block text-outline opacity-100 md:opacity-70 drop-shadow-[0_0_30px_rgba(0,0,0,1)] drop-shadow-[0_0_10px_rgba(0,0,0,1)] drop-shadow-[0_0_5px_rgba(0,0,0,1)] mt-2"
+                style={{ WebkitTextStroke: '1.2px rgba(255, 255, 255, 1)' }}
+              >
+                REALITY.
+              </span>
             </h2>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
