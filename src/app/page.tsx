@@ -1,503 +1,455 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { Mail, ArrowUpRight, Menu, X, Terminal, Cpu, Zap, Globe } from "lucide-react";
 import Image from 'next/image';
-import Link from 'next/link';
 
-export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [aboutModalOpen, setAboutModalOpen] = useState(false);
+const TextScramble = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState(text);
+  const chars = "!<>-_\\/[]{}—=+*^?#________";
 
-  const handleAboutClick = () => {
-    setMenuOpen(false); // Close hamburger menu
-    setAboutModalOpen(true); // Open about modal
-  };
+  useEffect(() => {
+    let iteration = 0;
+    const interval = setInterval(() => {
+      setDisplayText((current) =>
+        current
+          .split("")
+          .map((char, index) => {
+            if (index < iteration) return text[index];
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join("")
+      );
+
+      if (iteration >= text.length) clearInterval(interval);
+      iteration += 1 / 3;
+    }, 30);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return <span>{displayText}</span>;
+}
+
+export default function ZaynStudioFuturistic() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  useEffect(() => {
+    setMounted(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const bgY = useTransform(smoothProgress, [0, 1], ["0%", "20%"]);
+  const headRotate = useTransform(smoothProgress, [0, 1], [0, 15]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Multi-stop gradient background with effects */}
-      <div className="absolute inset-0 bg-purple-gradient">
-        {/* Animated grain texture overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-noise animate-pulse"></div>
-        </div>
-        
-        {/* Jellyfish blob shapes */}
-        {[
-          { size: 'w-40 h-32', position: 'top-[15%] left-[10%]', delay: 0 },
-          { size: 'w-56 h-44', position: 'top-[25%] right-[8%]', delay: 1 },
-          { size: 'w-32 h-28', position: 'top-[45%] left-[5%]', delay: 2 },
-          { size: 'w-48 h-36', position: 'bottom-[35%] right-[15%]', delay: 1.5 },
-          { size: 'w-36 h-32', position: 'bottom-[20%] left-[20%]', delay: 0.5 },
-          { size: 'w-28 h-24', position: 'top-[35%] right-[25%]', delay: 2.5 },
-          { size: 'w-52 h-40', position: 'bottom-[45%] right-[35%]', delay: 1.8 },
-          { size: 'w-24 h-20', position: 'top-[55%] left-[15%]', delay: 3 }
-        ].map((blob, i) => (
+    <main ref={containerRef} className="relative min-h-screen w-full bg-[#020202] text-[#F5F5F7] overflow-hidden selection:bg-cyanAccent/30 font-sans">
+
+      {/* --- VOID LAYER: HIGH-TECH BACKGROUND --- */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* Dynamic Vignette */}
+        <div
+          className="absolute inset-0 transition-opacity duration-1000"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 240, 255, 0.03), transparent 80%)`
+          }}
+        />
+
+        {/* Animated Grid */}
+        <div className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+
+        {/* Floating Particles */}
+        {mounted && [...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute ${blob.size} ${blob.position} opacity-20 blur-xl`}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0, 0.5, 0],
+              y: [0, -100, 0],
+              x: [0, Math.random() * 50 - 25, 0],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              delay: Math.random() * 10
+            }}
+            className="absolute w-px h-px bg-cyanAccent"
             style={{
-              background: `radial-gradient(ellipse, ${i % 2 === 0 ? '#7C3AED' : '#C084FC'} 0%, transparent 70%)`,
-              borderRadius: `${40 + i * 10}% ${60 + i * 5}% ${45 + i * 8}% ${55 + i * 6}%`,
-            }}
-            animate={{
-              x: [0, 20 + i * 5, 0],
-              y: [0, -15 - i * 3, 0],
-              scale: [1, 1.1 + i * 0.02, 1],
-            }}
-            transition={{
-              duration: 6 + i * 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: blob.delay,
-            }}
-          />
-        ))}
-
-        {/* Sparkle particles */}
-        {[
-          { position: 'top-[20%] left-[25%]', delay: 0 },
-          { position: 'top-[30%] right-[20%]', delay: 0.5 },
-          { position: 'top-[50%] left-[15%]', delay: 1 },
-          { position: 'bottom-[40%] right-[30%]', delay: 1.5 },
-          { position: 'bottom-[25%] left-[35%]', delay: 2 },
-          { position: 'top-[40%] right-[40%]', delay: 2.5 },
-          { position: 'top-[60%] left-[45%]', delay: 3 },
-          { position: 'bottom-[50%] right-[10%]', delay: 0.8 },
-          { position: 'top-[70%] left-[8%]', delay: 1.2 },
-          { position: 'bottom-[15%] right-[45%]', delay: 1.8 },
-          { position: 'top-[15%] left-[60%]', delay: 2.2 },
-          { position: 'bottom-[60%] left-[25%]', delay: 2.8 },
-          { position: 'top-[45%] right-[5%]', delay: 3.2 },
-          { position: 'bottom-[30%] left-[50%]', delay: 0.3 },
-          { position: 'top-[65%] right-[55%]', delay: 0.7 }
-        ].map((sparkle, i) => (
-          <motion.div
-            key={`sparkle-${i}`}
-            className={`absolute w-2 h-2 bg-white rounded-full ${sparkle.position} shadow-lg`}
-            animate={{
-              opacity: [0.2, 1, 0.2],
-              scale: [0.5, 1.2, 0.5],
-              x: [0, Math.random() * 10 - 5, 0],
-              y: [0, Math.random() * 10 - 5, 0],
-            }}
-            transition={{
-              duration: 2 + i * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: sparkle.delay,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
             }}
           />
         ))}
       </div>
 
-      {/* Hamburger Menu Button */}
-      <motion.button
-        className="absolute top-8 right-8 z-50 w-10 h-10 flex flex-col justify-center items-center"
-        onClick={() => setMenuOpen(!menuOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <motion.span
-          className="w-6 h-0.5 bg-white mb-1 rounded-full"
-          animate={{
-            rotate: menuOpen ? 45 : 0,
-            y: menuOpen ? 6 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        />
-        <motion.span
-          className="w-6 h-0.5 bg-white mb-1 rounded-full"
-          animate={{
-            opacity: menuOpen ? 0 : 1,
-          }}
-          transition={{ duration: 0.3 }}
-        />
-        <motion.span
-          className="w-6 h-0.5 bg-white rounded-full"
-          animate={{
-            rotate: menuOpen ? -45 : 0,
-            y: menuOpen ? -6 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.button>
+      {/* --- UI OVERLAY: SCANLINES & NOISE --- */}
+      <div className="fixed inset-0 pointer-events-none z-[100] opacity-[0.03] animate-pulse bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="fixed inset-0 pointer-events-none z-[100] scanlines" />
 
-      {/* Hamburger Menu Overlay */}
-      <motion.div
-        className="fixed inset-0 z-40 flex items-center justify-center"
-        initial={{ opacity: 0, y: -100 }}
-        animate={{
-          opacity: menuOpen ? 1 : 0,
-          y: menuOpen ? 0 : -100,
-        }}
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
-      >
-        {/* Solid backdrop to cover main page */}
-        <div className="absolute inset-0 bg-black"></div>
-        
-        {/* Same background as main page */}
-        <div className="absolute inset-0 bg-purple-gradient">
-          {/* Animated grain texture overlay */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-noise animate-pulse"></div>
+      {/* --- NAVIGATION --- */}
+      <nav className="fixed top-0 left-0 w-full z-[110] flex justify-between items-center px-8 md:px-16 py-8 backdrop-blur-sm border-b border-white/5">
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          className="flex items-center gap-6"
+        >
+          <div className="w-10 h-10 rounded-full border border-cyanAccent flex items-center justify-center animate-pulse">
+            <div className="w-3 h-3 bg-cyanAccent rounded-full" />
           </div>
-          
-          {/* Same jellyfish blobs */}
-          {[
-            { size: 'w-40 h-32', position: 'top-[15%] left-[10%]', delay: 0 },
-            { size: 'w-56 h-44', position: 'top-[25%] right-[8%]', delay: 1 },
-            { size: 'w-32 h-28', position: 'top-[45%] left-[5%]', delay: 2 },
-            { size: 'w-48 h-36', position: 'bottom-[35%] right-[15%]', delay: 1.5 },
-            { size: 'w-36 h-32', position: 'bottom-[20%] left-[20%]', delay: 0.5 },
-            { size: 'w-28 h-24', position: 'top-[35%] right-[25%]', delay: 2.5 },
-            { size: 'w-52 h-40', position: 'bottom-[45%] right-[35%]', delay: 1.8 },
-            { size: 'w-24 h-20', position: 'top-[55%] left-[15%]', delay: 3 }
-          ].map((blob, i) => (
-            <motion.div
-              key={`menu-blob-${i}`}
-              className={`absolute ${blob.size} ${blob.position} opacity-20 blur-xl`}
-              style={{
-                background: `radial-gradient(ellipse, ${i % 2 === 0 ? '#7C3AED' : '#C084FC'} 0%, transparent 70%)`,
-                borderRadius: `${40 + i * 10}% ${60 + i * 5}% ${45 + i * 8}% ${55 + i * 6}%`,
-              }}
-              animate={{
-                x: [0, 20 + i * 5, 0],
-                y: [0, -15 - i * 3, 0],
-                scale: [1, 1.1 + i * 0.02, 1],
-              }}
-              transition={{
-                duration: 6 + i * 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: blob.delay,
-              }}
-            />
-          ))}
+          <h1 className="text-xl md:text-2xl font-bold tracking-[-0.05em] uppercase">ZAYN STUDIO</h1>
+        </motion.div>
 
-          {/* Same sparkles */}
-          {[
-            { position: 'top-[20%] left-[25%]', delay: 0 },
-            { position: 'top-[30%] right-[20%]', delay: 0.5 },
-            { position: 'top-[50%] left-[15%]', delay: 1 },
-            { position: 'bottom-[40%] right-[30%]', delay: 1.5 },
-            { position: 'bottom-[25%] left-[35%]', delay: 2 },
-            { position: 'top-[40%] right-[40%]', delay: 2.5 },
-            { position: 'top-[60%] left-[45%]', delay: 3 },
-            { position: 'bottom-[50%] right-[10%]', delay: 0.8 },
-            { position: 'top-[70%] left-[8%]', delay: 1.2 },
-            { position: 'bottom-[15%] right-[45%]', delay: 1.8 }
-          ].map((sparkle, i) => (
-            <motion.div
-              key={`menu-sparkle-${i}`}
-              className={`absolute w-2 h-2 bg-white rounded-full ${sparkle.position} shadow-lg`}
-              animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [0.5, 1.2, 0.5],
-                x: [0, Math.random() * 10 - 5, 0],
-                y: [0, Math.random() * 10 - 5, 0],
-              }}
-              transition={{
-                duration: 2 + i * 0.3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: sparkle.delay,
-              }}
-            />
-          ))}
+        <div className="hidden md:flex gap-12 text-[9px] tracking-[0.4em] text-steel uppercase cursor-pointer">
+          <a href="#projects" className="hover:text-cyanAccent transition-colors relative group">
+            Work
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyanAccent group-hover:w-full transition-all duration-300" />
+          </a>
+          <a href="#about" className="hover:text-cyanAccent transition-colors relative group">
+            Lab
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyanAccent group-hover:w-full transition-all duration-300" />
+          </a>
+          <a href="mailto:sandy@zaynstudio.app" className="hover:text-cyanAccent transition-colors relative group">
+            Connect
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyanAccent group-hover:w-full transition-all duration-300" />
+          </a>
         </div>
 
-        <nav className="text-center relative z-10">
-          <motion.ul className="space-y-8 text-white text-2xl font-inter">
-            {['About', 'Apps', 'Contact'].map((item, index) => (
-              <motion.li
-                key={item}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{
-                  opacity: menuOpen ? 1 : 0,
-                  x: menuOpen ? 0 : -50,
-                }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="hover:text-purple-300 cursor-pointer transition-colors"
-              >
-                {item === 'Contact' ? (
-                  <Link href="/contact" onClick={() => setMenuOpen(false)}>
-                    {item}
-                  </Link>
-                ) : item === 'Apps' ? (
-                  <Link href="/apps" onClick={() => setMenuOpen(false)}>
-                    {item}
-                  </Link>
-                ) : (
-                  <span onClick={item === 'About' ? handleAboutClick : undefined}>
-                    {item}
-                  </span>
-                )}
-              </motion.li>
-            ))}
-          </motion.ul>
-        </nav>
-      </motion.div>
+        <button onClick={() => setIsMenuOpen(true)} className="md:hidden text-white">
+          <Menu size={20} />
+        </button>
+      </nav>
 
-      {/* About Modal */}
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: aboutModalOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: aboutModalOpen ? 'auto' : 'none' }}
-      >
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-          onClick={() => setAboutModalOpen(false)}
-        />
-        
-        {/* Modal Content */}
+      {/* --- HERO SECTION: THE CORE --- */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20">
+
+        {/* Immersive Neural Core */}
         <motion.div
-          className="relative bg-purple-gradient rounded-2xl p-8 max-w-lg w-full mx-4 shadow-2xl border border-white/20"
-          initial={{ scale: 0.8, y: 50 }}
-          animate={{
-            scale: aboutModalOpen ? 1 : 0.8,
-            y: aboutModalOpen ? 0 : 50,
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          style={{ y: bgY, rotateY: headRotate }}
+          className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
         >
-          {/* Same background effects as main page */}
-          <div className="absolute inset-0 rounded-2xl overflow-hidden">
-            {/* Animated grain texture */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-noise animate-pulse"></div>
-            </div>
-            
-            {/* Mini jellyfish */}
-            <motion.div
-              className="absolute top-4 right-4 w-8 h-6 opacity-30 blur-sm"
+          <div className="relative w-[350vw] md:w-full md:max-w-[1400px] aspect-square opacity-100 mt-[8vh] md:mt-0 scale-150 md:scale-110">
+            <Image
+              src="/hero.png"
+              alt="Neural Core"
+              fill
+              unoptimized
+              className="object-contain mix-blend-screen contrast-125 brightness-110"
               style={{
-                background: 'radial-gradient(ellipse, #C084FC 0%, transparent 70%)',
-                borderRadius: '50% 70% 60% 40%',
+                maskImage: 'radial-gradient(circle, black 30%, transparent 75%), linear-gradient(to bottom, black 80%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(circle, black 30%, transparent 75%), linear-gradient(to bottom, black 80%, transparent 100%)',
+                maskComposite: 'intersect',
+                WebkitMaskComposite: 'destination-in'
               }}
-              animate={{
-                x: [0, 8, 0],
-                y: [0, -6, 0],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              priority
             />
-            
+            {/* Dynamic Light Ring */}
             <motion.div
-              className="absolute bottom-6 left-6 w-6 h-4 opacity-25 blur-sm"
-              style={{
-                background: 'radial-gradient(ellipse, #7C3AED 0%, transparent 70%)',
-                borderRadius: '40% 60% 70% 50%',
-              }}
-              animate={{
-                x: [0, -6, 0],
-                y: [0, 4, 0],
-                scale: [1, 1.08, 1],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute inset-0 rounded-full border-2 border-cyanAccent/20 blur-2xl"
             />
-            
-            {/* Mini sparkles */}
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={`about-sparkle-${i}`}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                style={{
-                  top: `${15 + i * 20}%`,
-                  left: `${15 + i * 25}%`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2.5 + i * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.6,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Modal Content */}
-          <div className="relative z-10 text-white">
-            {/* Close button */}
-            <button
-              onClick={() => setAboutModalOpen(false)}
-              className="absolute -top-2 -right-2 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-            >
-              <span className="text-white text-lg">×</span>
-            </button>
-
-            <motion.h2
-              className="text-3xl font-inter font-bold mb-6 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              About Zaynstudio
-            </motion.h2>
-            
-            <motion.div
-              className="text-center mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="text-lg font-inter font-semibold mb-4 leading-relaxed">
-                Creative ideas. Playful apps. Real impact.
-              </div>
-              
-              <div className="text-purple-100 text-sm leading-relaxed mb-4">
-                Zaynstudio is a creative-tech lab building fun and useful digital products for everyday life.
-              </div>
-              
-              <div className="text-purple-200 text-sm">
-                We believe innovation should be joyful and make a difference.
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="text-purple-200 mb-3 font-inter">
-                Let&apos;s connect!
-              </div>
-              
-              <Link href="/contact">
-                <motion.button
-                  onClick={() => setAboutModalOpen(false)}
-                  className="bg-white/15 rounded-lg px-6 py-3 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors font-inter font-medium w-full"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Contact us
-                </motion.button>
-              </Link>
-            </motion.div>
           </div>
         </motion.div>
-      </motion.div>
 
-      {/* Hero Section */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 max-w-6xl w-full">
-          {/* Text - Top on mobile, Left on desktop */}
-          <div className="text-center md:text-left order-2 md:order-1">
-            <motion.h1
-              className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-inter font-bold text-white mb-4 md:mb-6"
-              style={{ filter: 'blur(0.8px)' }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              ZaynStudio
-            </motion.h1>
-
-            <motion.p
-              className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-inter text-purple-200"
-              style={{ filter: 'blur(0.5px)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Apps that reshape reality.
-            </motion.p>
-          </div>
-
-          {/* Logo - Top on mobile, Right on desktop */}
+        {/* Content Layer */}
+        <div className="relative z-20 text-center px-6">
           <motion.div
-            className="flex-shrink-0 order-1 md:order-2"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div
-              className="relative"
-              animate={{
-                y: [0, -10, 0],
-                filter: [
-                  'drop-shadow(0 0 5px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 10px rgba(192, 132, 252, 0.2))',
-                  'drop-shadow(0 0 8px rgba(124, 58, 237, 0.6)) drop-shadow(0 0 15px rgba(192, 132, 252, 0.4))',
-                  'drop-shadow(0 0 5px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 10px rgba(192, 132, 252, 0.2))'
-                ],
-                scale: [1, 1.005, 1]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Image
-                src="/logo.png"
-                alt="Zayn Studio Logo"
-                width={700}
-                height={700}
-                className="object-contain w-[500px] h-[500px] sm:w-[550px] sm:h-[550px] md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] xl:w-[700px] xl:h-[700px]"
-                priority
-              />
-            </motion.div>
+            <h2 className="text-[12vw] md:text-[8.5rem] font-bold tracking-[-0.05em] leading-[0.8] mb-8">
+              <span className="block drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]">RESHAPING</span>
+              <span className="block text-outline opacity-100 md:opacity-70 drop-shadow-[0_0_15px_rgba(0,0,0,1)] drop-shadow-[0_0_4px_rgba(0,0,0,1)] mt-2">REALITY.</span>
+            </h2>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="flex items-center gap-4 font-mono text-[9px] tracking-[0.5em] text-steel uppercase"
+              >
+                <div className="p-2 border border-white/10 rounded-lg backdrop-blur-md">
+                  <Terminal size={14} className="text-cyanAccent" />
+                </div>
+                <span>Architecture</span>
+              </motion.div>
+
+              <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+                className="flex items-center gap-4 font-mono text-[9px] tracking-[0.5em] text-steel uppercase"
+              >
+                <div className="p-2 border border-white/10 rounded-lg backdrop-blur-md">
+                  <Cpu size={14} className="text-cyanAccent" />
+                </div>
+                <span>Intelligence</span>
+              </motion.div>
+
+              <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4 }}
+                className="flex items-center gap-4 font-mono text-[9px] tracking-[0.5em] text-steel uppercase"
+              >
+                <div className="p-2 border border-white/10 rounded-lg backdrop-blur-md">
+                  <Zap size={14} className="text-cyanAccent" />
+                </div>
+                <span>Impact</span>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="relative z-20 py-8 px-4 text-center">
-        <div className="flex flex-col items-center space-y-4">
-          {/* Legal Links */}
-          <div className="flex flex-wrap items-center justify-center gap-3 text-purple-300 text-xs font-inter">
-            <Link
-              href="/privacy"
-              className="hover:text-purple-200 transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/terms"
-              className="hover:text-purple-200 transition-colors"
-            >
-              Terms of Service
-            </Link>
-            <span>|</span>
-            <Link
-              href="/contact"
-              className="hover:text-purple-200 transition-colors"
-            >
-              Contact
-            </Link>
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50"
+        >
+          <div className="w-[1px] h-12 bg-gradient-to-b from-cyanAccent to-transparent" />
+          <span className="text-[8px] font-mono tracking-[0.5em] uppercase">Initiate Scroll</span>
+        </motion.div>
+      </section>
+
+      {/* --- PROJECTS SECTION: THE PORTFOLIO --- */}
+      <section id="projects" className="relative py-40 px-6 md:px-20 z-30">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="max-w-xl">
+              <h3 className="text-[10px] font-mono text-cyanAccent mb-6 uppercase tracking-[0.8em]">Work // Selected Outputs</h3>
+              <h4 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase whitespace-pre-line">
+                PROTOTYPING <br /> THE UNKNOWN.
+              </h4>
+            </div>
+            <p className="text-steel/50 font-mono text-[9px] tracking-[0.3em] uppercase max-w-[200px] leading-relaxed">
+              Every project is a step towards vertical intelligence.
+            </p>
           </div>
 
-          {/* Copyright */}
-          <p className="text-purple-300 text-sm font-inter">
-            © 2025 ZaynStudio. All rights reserved.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {[
+              {
+                title: "CORE.APP",
+                category: "Neural Research // Phase 01",
+                status: "UNDER CONSTRUCTION",
+                image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop",
+                id: "01"
+              },
+              {
+                title: "DIGITAL.KIT",
+                category: "Spatial Logic // Phase 02",
+                status: "ACCESS RESTRICTED",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+                id: "02"
+              }
+            ].map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="group relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden border border-white/5 cursor-pointer bg-obsidian"
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+                />
+
+                {/* Construction Overlay Noise */}
+                <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
+
+                <div className="absolute inset-0 p-12 flex flex-col justify-between z-20">
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em]">{project.id}</span>
+                      <motion.div
+                        animate={{ opacity: [0.6, 1, 0.6] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="px-6 py-3 bg-cyanAccent/5 border border-cyanAccent/20 rounded-xl w-fit backdrop-blur-md"
+                      >
+                        <span className="text-[12px] font-mono text-cyanAccent tracking-[0.4em] uppercase font-bold">{project.status}</span>
+                      </motion.div>
+                    </div>
+                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-cyanAccent group-hover:border-cyanAccent transition-all duration-500">
+                      <Zap size={16} className="text-white/40 group-hover:text-black transition-colors" />
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <h5 className="text-[9px] font-mono text-steel uppercase tracking-[0.6em] mb-4 opacity-40">{project.category}</h5>
+                    <h6 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase glitch-hover">
+                      <TextScramble text={project.title} />
+                    </h6>
+
+                    {/* Construction Bars on Hover */}
+                    <div className="absolute -bottom-4 left-0 w-0 h-[2px] bg-cyanAccent group-hover:w-full transition-all duration-700 opacity-30" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- ABOUT SECTION: GHOST PANELS --- */}
+      <section id="about" className="relative py-40 px-6 md:px-20 overflow-visible z-30">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <h3 className="text-[10px] font-mono text-cyanAccent mb-8 uppercase tracking-[0.8em]">Manifesto // 01</h3>
+            <h4 className="text-4xl md:text-6xl font-bold mb-10 leading-tight">
+              WE ARE THE <br /> <span className="text-cyanAccent">ARCHITECTS</span> OF <br /> PERCEPTION.
+            </h4>
+            <p className="text-steel leading-[2] text-sm md:text-lg font-light max-w-md opacity-80">
+              In the intersection of human psychology and machine learning, we find the canvas for the next reality.
+              Everything we build is an experiment in radical utility and aesthetic perfection.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { title: "Neuro-Design", desc: "Interfaces that adapt to human cognitive patterns." },
+              { title: "Synthetic Intelligence", desc: "AI agents integrated into daily utility." },
+              { title: "Spatial Logic", desc: "Digital environments that transcend screen boundaries." },
+              { title: "Radical Impact", desc: "Engineering products that define new categories." }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, borderColor: 'rgba(0, 240, 255, 0.3)' }}
+                className="p-8 rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-3xl transition-all h-full flex flex-col justify-between group"
+              >
+                <div className="mb-8">
+                  <span className="text-[8px] font-mono text-steel block mb-2 opacity-50">0{i + 1}</span>
+                  <h5 className="text-sm font-bold tracking-widest uppercase mb-4 group-hover:text-cyanAccent transition-colors">{item.title}</h5>
+                  <p className="text-[11px] text-steel/60 leading-relaxed">{item.desc}</p>
+                </div>
+                <motion.div animate={{ rotate: [0, 90, 0] }} transition={{ duration: 4, repeat: Infinity }} className="w-4 h-4 border border-white/20 rounded-sm" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- STATUS BAR: GLOBAL TICKER --- */}
+      <footer className="relative z-[110] border-t border-white/5 py-8 md:py-12 px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8 backdrop-blur-xl bg-obsidian/50">
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 max-w-full text-center md:text-left">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="w-2 h-2 rounded-full bg-cyanAccent shadow-[0_0_10px_#00F0FF]" />
+            <span className="text-[9px] font-mono tracking-[0.4em] text-cyanAccent uppercase">Network: Online</span>
+          </div>
+          <div className="w-[1px] h-4 bg-white/10 hidden md:block" />
+          <p className="text-[9px] font-mono tracking-[0.4em] text-steel uppercase animate-pulse leading-relaxed">
+            Current Task: <TextScramble text="EVOLVING DIGITAL REALITIES" />
           </p>
         </div>
+
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="flex gap-8 md:border-r md:border-white/5 md:pr-8">
+            <a href="/privacy" className="text-[8px] font-mono tracking-[0.4em] text-steel/40 hover:text-cyanAccent transition-colors uppercase">Privacy Policy</a>
+            <a href="/terms" className="text-[8px] font-mono tracking-[0.4em] text-steel/40 hover:text-cyanAccent transition-colors uppercase">Terms of Service</a>
+          </div>
+          <div className="flex gap-12 items-center">
+            <a href="mailto:sandy@zaynstudio.app" className="p-4 rounded-full border border-white/10 hover:border-cyanAccent hover:bg-cyanAccent/5 transition-all transition-colors group">
+              <Mail size={16} className="text-steel group-hover:text-cyanAccent transition-colors" />
+            </a>
+            <p className="text-[8px] tracking-[0.5em] text-steel uppercase opacity-30">
+              © 2026 ZAYN.STUDIO // ALL SYSTEMS GO
+            </p>
+          </div>
+        </div>
       </footer>
-    </div>
+
+      {/* --- MENU OVERLAY --- */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-obsidian/95 backdrop-blur-3xl flex items-center justify-center"
+          >
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
+              <div className="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-pulse" />
+            </div>
+
+            <button onClick={() => setIsMenuOpen(false)} className="absolute top-12 right-12 text-white p-4 hover:scale-110 transition-transform">
+              <X size={40} strokeWidth={1} />
+            </button>
+
+            <nav className="text-center relative z-10 flex flex-col gap-12 w-full px-8">
+              {[
+                { label: 'Work', href: '#projects' },
+                { label: 'Lab', href: '#about' },
+                { label: 'Connect', href: 'mailto:sandy@zaynstudio.app' }
+              ].map((item, i) => (
+                <motion.a
+                  key={i}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-5xl md:text-8xl font-bold tracking-tighter uppercase whitespace-nowrap hover:text-cyanAccent transition-all transition-colors"
+                >
+                  {item.label}.
+                </motion.a>
+              ))}
+
+              <div className="mt-12 flex flex-col items-center gap-4">
+                <div className="h-px w-24 bg-cyanAccent/30" />
+                <span className="text-[9px] font-mono tracking-[0.8em] text-steel uppercase">Initiate Digital Pulse</span>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CUSTOM CURSOR --- */}
+      <motion.div
+        className="hidden md:block fixed top-0 left-0 w-12 h-12 rounded-full border border-cyanAccent/20 pointer-events-none z-[300]"
+        animate={{
+          x: mousePos.x - 24,
+          y: mousePos.y - 24,
+        }}
+        transition={{ type: "spring", damping: 30, stiffness: 200, restDelta: 0.001 }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-1 h-1 bg-cyanAccent rounded-full" />
+        </div>
+        <div className="absolute -inset-2 border border-white/5 rounded-full" />
+      </motion.div>
+
+    </main>
   );
 }

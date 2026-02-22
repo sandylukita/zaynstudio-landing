@@ -2,212 +2,165 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ChevronLeft } from 'lucide-react';
 
 export default function TermsOfService() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Same magical background as main page */}
-      <div className="absolute inset-0 bg-purple-gradient">
-        {/* Animated grain texture overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-noise animate-pulse"></div>
-        </div>
+    <main className="relative min-h-screen w-full bg-[#050505] text-[#F5F5F7] selection:bg-cyanAccent/30 font-sans overflow-x-hidden">
+      {/* --- BACKGROUND ARCHITECTURE --- */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(0,240,255,0.05)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] mix-blend-overlay" />
 
-        {/* Jellyfish blob shapes */}
-        {[
-          { size: 'w-40 h-32', position: 'top-[15%] left-[10%]', delay: 0 },
-          { size: 'w-56 h-44', position: 'top-[25%] right-[8%]', delay: 1 },
-          { size: 'w-32 h-28', position: 'top-[45%] left-[5%]', delay: 2 },
-          { size: 'w-48 h-36', position: 'bottom-[35%] right-[15%]', delay: 1.5 },
-        ].map((blob, i) => (
-          <motion.div
-            key={i}
-            className={`absolute ${blob.size} ${blob.position} opacity-20 blur-xl`}
-            style={{
-              background: `radial-gradient(ellipse, ${i % 2 === 0 ? '#7C3AED' : '#C084FC'} 0%, transparent 70%)`,
-              borderRadius: `${40 + i * 10}% ${60 + i * 5}% ${45 + i * 8}% ${55 + i * 6}%`,
-            }}
-            animate={{
-              x: [0, 20 + i * 5, 0],
-              y: [0, -15 - i * 3, 0],
-              scale: [1, 1.1 + i * 0.02, 1],
-            }}
-            transition={{
-              duration: 6 + i * 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: blob.delay,
-            }}
-          />
-        ))}
+        {/* Subtle Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,240,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.2) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
 
-        {/* Sparkle particles */}
-        {[
-          { position: 'top-[20%] left-[25%]', delay: 0 },
-          { position: 'top-[30%] right-[20%]', delay: 0.5 },
-          { position: 'top-[50%] left-[15%]', delay: 1 },
-          { position: 'bottom-[40%] right-[30%]', delay: 1.5 },
-        ].map((sparkle, i) => (
-          <motion.div
-            key={`sparkle-${i}`}
-            className={`absolute w-2 h-2 bg-white rounded-full ${sparkle.position} shadow-lg`}
-            animate={{
-              opacity: [0.2, 1, 0.2],
-              scale: [0.5, 1.2, 0.5],
-              x: [0, Math.random() * 10 - 5, 0],
-              y: [0, Math.random() * 10 - 5, 0],
-            }}
-            transition={{
-              duration: 2 + i * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: sparkle.delay,
-            }}
-          />
-        ))}
+        {/* Scanlines Effect */}
+        <div className="absolute inset-0 bg-scanlines pointer-events-none opacity-[0.03]" />
       </div>
 
-      {/* Header Navigation */}
-      <header className="relative z-20 p-6">
-        <Link
-          href="/"
-          className="inline-flex items-center text-white hover:text-purple-200 transition-colors font-inter"
-        >
-          <span className="mr-2">←</span>
-          Back to ZaynStudio
+      {/* --- NAVIGATION --- */}
+      <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 py-8 flex justify-between items-center backdrop-blur-sm bg-black/20">
+        <Link href="/" className="group flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-cyanAccent transition-all duration-500">
+            <ChevronLeft size={18} className="text-white group-hover:text-cyanAccent transition-colors" />
+          </div>
+          <span className="text-[10px] font-mono tracking-[0.4em] text-steel group-hover:text-cyanAccent transition-colors uppercase">
+            Exit to Laboratory
+          </span>
         </Link>
-      </header>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen pb-20">
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          <motion.h1
-            className="text-4xl sm:text-5xl font-inter font-bold text-white mb-8 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Terms of Service
-          </motion.h1>
+        <div className="text-[10px] font-mono tracking-[0.4em] text-steel/40 uppercase hidden md:block">
+          Protocol // Terms.Archive
+        </div>
+      </nav>
 
+      {/* --- CONTENT --- */}
+      <section className="relative z-10 pt-40 pb-32 px-6">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-white"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="space-y-6 text-sm leading-relaxed">
-              <p className="text-purple-100"><strong>Effective Date:</strong> August 6, 2025</p>
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase mb-6">
+              Terms of <br /> <span className="text-cyanAccent">Service.</span>
+            </h1>
+            <div className="flex items-center gap-4 mb-16">
+              <div className="h-px w-12 bg-cyanAccent/30" />
+              <p className="text-[10px] font-mono tracking-[0.3em] text-steel/60 uppercase">
+                Last Revision: August 06, 2025
+              </p>
+            </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">1. Acceptance of Terms</h3>
-                <p className="text-purple-100">By downloading, installing, or using any ZaynStudio app (&quot;App&quot;), you agree to these Terms of Service. If you do not agree, please discontinue use of the App.</p>
+            <div className="space-y-16">
+              {/* Section 01 */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
+                <div className="md:col-span-1">
+                  <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em] uppercase">01 // Acceptance</span>
+                </div>
+                <div className="md:col-span-3">
+                  <h3 className="text-xl font-bold mb-6 tracking-tight uppercase">Usage Agreement</h3>
+                  <p className="text-steel/70 leading-relaxed font-light">
+                    By accessing or utilizing any ZaynStudio digital environment ("App"), you acknowledge and agree to the protocols outlined in these Terms of Service. If you do not consent, you are instructed to terminate access immediately.
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">2. Eligibility & Age Restriction</h3>
-                <p className="text-purple-100">The App is intended for individuals aged 13 and older. Users under 18 should obtain parental consent. The App is not directed to children under 13, and we do not knowingly collect data from them.</p>
+              {/* Section 02 */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
+                <div className="md:col-span-1">
+                  <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em] uppercase">02 // Parameters</span>
+                </div>
+                <div className="md:col-span-3">
+                  <h3 className="text-xl font-bold mb-6 tracking-tight uppercase">Eligibility & Conduct</h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Access is restricted to individuals aged 13 and older.",
+                      "Users must comply with all regional and digital governance laws.",
+                      "Unauthorized reverse-engineering or system intrusion is strictly prohibited.",
+                      "Distribution of malicious payloads or harmful content within the ecosystem will result in immediate termination."
+                    ].map((item, i) => (
+                      <li key={i} className="flex gap-4 group">
+                        <span className="text-cyanAccent/40 font-mono text-[10px] mt-1.5">—</span>
+                        <p className="text-steel/60 text-sm leading-relaxed">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">3. App Usage</h3>
-                <p className="text-purple-100">You may use the App for personal purposes in accordance with:</p>
-                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>All applicable laws and regulations</li>
-                  <li>App store terms and conditions</li>
-                  <li>These Terms of Service</li>
-                </ul>
+              {/* Section 03 */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
+                <div className="md:col-span-1">
+                  <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em] uppercase">03 // Commerce</span>
+                </div>
+                <div className="md:col-span-3">
+                  <h3 className="text-xl font-bold mb-6 tracking-tight uppercase">Subscriptions & Systems</h3>
+                  <p className="text-steel/70 leading-relaxed mb-6 font-light">Laboratory access and premium tiers are governed by the following mechanics:</p>
+                  <ul className="space-y-4">
+                    {[
+                      "Payments are processed through secure app store infrastructure (Apple/Google).",
+                      "Refund protocols follow standard platform-specific merchant policies.",
+                      "Access to premium modules is contingent upon an active subscription status."
+                    ].map((item, i) => (
+                      <li key={i} className="flex gap-4">
+                        <span className="text-cyanAccent/40 font-mono text-[10px] mt-1.5">—</span>
+                        <p className="text-steel/60 text-sm leading-relaxed">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">4. User Accounts & Subscriptions</h3>
-                <p className="text-purple-100">You are responsible for maintaining the confidentiality of your account and credentials.</p>
-                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Subscriptions and payments are processed through Google Play Billing and/or Apple In-App Purchases.</li>
-                  <li>Refunds are handled in accordance with Google Play and Apple App Store policies.</li>
-                  <li>Premium features will remain accessible only while your subscription is active.</li>
-                </ul>
+              {/* Section 04 */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
+                <div className="md:col-span-1">
+                  <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em] uppercase">04 // Assets</span>
+                </div>
+                <div className="md:col-span-3">
+                  <h3 className="text-xl font-bold mb-6 tracking-tight uppercase">Intellectual Architecture</h3>
+                  <p className="text-steel/70 leading-relaxed mb-4 font-light">ZaynStudio retains absolute ownership of all system components, including:</p>
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {["Codebase", "Interface Design", "Neural Models", "Branding Assets"].map((tag, i) => (
+                      <span key={i} className="px-3 py-1 border border-white/10 rounded-full text-[9px] font-mono text-steel/50 uppercase tracking-widest">{tag}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">5. Prohibited Uses</h3>
-                <p className="text-purple-100">You agree NOT to:</p>
-                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Reverse engineer, decompile, or disassemble the App</li>
-                  <li>Use the App for illegal or harmful activities</li>
-                  <li>Attempt to gain unauthorized access to our systems</li>
-                  <li>Upload or distribute malware, offensive, or harmful content</li>
-                  <li>Violate intellectual property rights of ZaynStudio or third parties</li>
-                </ul>
+              {/* Section 05 */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
+                <div className="md:col-span-1">
+                  <span className="text-[10px] font-mono text-cyanAccent tracking-[0.5em] uppercase">05 // Diagnostics</span>
+                </div>
+                <div className="md:col-span-3">
+                  <h3 className="text-xl font-bold mb-6 tracking-tight uppercase">Liability & Disclaimers</h3>
+                  <div className="p-8 rounded-2xl border border-white/5 bg-white/[0.01] font-mono text-[11px] leading-relaxed text-steel/60 space-y-4 italic">
+                    <p>"AS IS" PROTOCOL: THE APP IS PROVIDED WITHOUT WARRANTY OF ANY KIND. ZAYNSTUDIO ASSUMES NO LIABILITY FOR SYSTEM DOWNTIME OR DATA ANOMALIES.</p>
+                    <p>MAMBA FOCUS DISCLAIMER: "NO MERCY" MECHANICS ARE INTENDED TO BE UNFORGIVING. FAILURE TO MAINTAIN FOCUS MAY RESULT IN PUBLIC BROADCAST TO THE REGISTRY. REFUNDS ARE NOT ISSUED FOR INTENDED DIFFICULTY CHALLENGES.</p>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">6. Intellectual Property</h3>
-                <p className="text-purple-100">ZaynStudio retains all rights, title, and interest in the App, including:</p>
-                <ul className="list-disc list-inside mt-2 text-purple-200 space-y-1">
-                  <li>Software code and architecture</li>
-                  <li>User interface and design elements</li>
-                  <li>Trademarks, logos, and branding</li>
-                  <li>Content, documentation, and media assets</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">7. Community Features</h3>
-                <p className="text-purple-100">Some Apps may include anonymous community statistics, badges, or achievements. You agree to use these features responsibly and not submit harmful, offensive, or misleading content.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">8. Disclaimer of Warranties</h3>
-                <p className="text-purple-100">The App is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind. We do not guarantee that the App will be error-free, secure, or continuously available.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">9. App-Specific Disclaimers</h3>
-                <p className="text-purple-100 mb-2">Certain apps may have specific disclaimers:</p>
-                <p className="text-purple-100"><strong>Health & Wellness Apps (ByeSmoke AI):</strong> This app provides motivational and lifestyle support only. It is not medical advice or treatment. For medical advice regarding quitting smoking or health conditions, consult a licensed healthcare professional.</p>
-                <p className="text-purple-100 mt-4"><strong>Mamba Focus:</strong> This app incorporates "No Mercy" mechanics designed to be inherently difficult and unforgiving. Failed sessions (e.g., picking up your phone) result in immediate failure and potential public listing on the "Wall of Shame". By using the App, you agree that your chosen "Call Sign" and failure statistics may be publicly displayed to other users. Refunds are not issued for failed focus sessions or dissatisfaction with the intended difficulty of the application's core mechanics.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">10. Limitation of Liability</h3>
-                <p className="text-purple-100">ZaynStudio shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of the App.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">11. Termination</h3>
-                <p className="text-purple-100">We may suspend or terminate your access to the App immediately, without notice, if you violate these Terms or misuse the App.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">12. Governing Law & Dispute Resolution</h3>
-                <p className="text-purple-100">These Terms shall be governed by the laws of Indonesia (or your country of residence, if required by law). Any disputes will be resolved through the appropriate courts in that jurisdiction.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">13. Support</h3>
-                <p className="text-purple-100">For technical support or questions, contact us at:</p>
-                <p className="text-white font-semibold">📧 sandy@zaynstudio.app</p>
-                <p className="text-purple-200 mt-1">We aim to respond within 48 hours.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-white">14. Changes to Terms</h3>
-                <p className="text-purple-100">We may modify these Terms from time to time. Updated Terms will be posted in the App and on our website. Continued use of the App constitutes acceptance of the updated Terms.</p>
+              {/* Final Footer */}
+              <div className="pt-24 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="flex flex-col gap-3">
+                  <span className="text-[8px] font-mono text-steel/30 uppercase tracking-[0.6em]">System support node</span>
+                  <a href="mailto:sandy@zaynstudio.app" className="text-sm font-bold hover:text-cyanAccent transition-colors">sandy@zaynstudio.app</a>
+                </div>
+                <p className="text-[8px] font-mono text-steel/20 uppercase tracking-[0.5em]">© 2026 ZAYNSTUDIO // ALL SYSTEMS GO</p>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="relative z-20 py-8 px-4 border-t border-white/10">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-purple-300 text-sm font-inter">
-            © 2025 ZaynStudio. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }
