@@ -107,8 +107,8 @@ export default function ZaynStudioFuturistic() {
           animate={{ x: 0, opacity: 1 }}
           className="flex items-center gap-6"
         >
-          <div className="w-10 h-10 rounded-full border border-cyanAccent flex items-center justify-center animate-pulse">
-            <div className="w-3 h-3 bg-cyanAccent rounded-full" />
+          <div className="w-6 h-6 rounded-full border border-cyanAccent flex items-center justify-center animate-pulse">
+            <div className="w-1.5 h-1.5 bg-cyanAccent rounded-full" />
           </div>
           <h1 className="text-xl md:text-2xl font-bold tracking-[-0.05em] uppercase">ZAYN STUDIO</h1>
         </motion.div>
@@ -141,16 +141,16 @@ export default function ZaynStudioFuturistic() {
           style={{ y: bgY, rotateY: headRotate }}
           className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
         >
-          <div className="relative w-[350vw] md:w-full md:max-w-[1400px] aspect-square opacity-100 mt-[8vh] md:mt-0 scale-150 md:scale-110">
+          <div className="relative w-[450vw] md:w-full md:max-w-[1600px] aspect-square opacity-100 mt-[8vh] md:mt-0 scale-[1.75] md:scale-125">
             <Image
               src="/hero.png"
               alt="Neural Core"
               fill
               unoptimized
-              className="object-contain mix-blend-screen contrast-125 brightness-110"
+              className="object-contain mix-blend-screen contrast-150 brightness-95"
               style={{
-                maskImage: 'radial-gradient(circle, black 30%, transparent 75%), linear-gradient(to bottom, black 80%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(circle, black 30%, transparent 75%), linear-gradient(to bottom, black 80%, transparent 100%)',
+                maskImage: 'radial-gradient(circle, black 10%, transparent 55%), linear-gradient(to bottom, black 60%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(circle, black 10%, transparent 55%), linear-gradient(to bottom, black 60%, transparent 100%)',
                 maskComposite: 'intersect',
                 WebkitMaskComposite: 'destination-in'
               }}
@@ -174,7 +174,7 @@ export default function ZaynStudioFuturistic() {
           >
             <h2 className="text-[12vw] md:text-[8.5rem] font-bold tracking-[-0.05em] leading-[0.8] mb-8">
               <span className="block drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]">RESHAPING</span>
-              <span className="block text-outline opacity-100 md:opacity-70 drop-shadow-[0_0_15px_rgba(0,0,0,1)] drop-shadow-[0_0_4px_rgba(0,0,0,1)] mt-2">REALITY.</span>
+              <span className="block text-outline opacity-100 md:opacity-70 drop-shadow-[0_0_30px_rgba(0,0,0,1)] drop-shadow-[0_0_10px_rgba(0,0,0,1)] drop-shadow-[0_0_5px_rgba(0,0,0,1)] mt-2">REALITY.</span>
             </h2>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">

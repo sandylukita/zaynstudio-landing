@@ -110,3 +110,18 @@ body {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   color: transparent;
 }
+
+/* Scanline Animation for Navigation Mark */
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(400%);
+  }
+}
+
+.animate-scan {
+  animation: scan 3s linear infinite;
+}
